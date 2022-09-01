@@ -52,7 +52,7 @@ Returns the information about the current user that is logged in.
 * Require Authentication: true
 * Request
   * Method: `GET`
-  * URL: `/api/:username`
+  * URL: `/api/:UserId`
   * Body: none
 
 * Successful Response
@@ -79,7 +79,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: `POST`
-  * URL: `/api/session`
+  * URL: `/api/login`
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -146,7 +146,7 @@ user's information.
 * Require Authentication: false
 * Request
   * Method: `POST`
-  * URL: `/api/`
+  * URL: `/api/signup`
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -603,7 +603,7 @@ Returns all the playlists created by the specified artist.
 * Require Authentication: false
 * Request
   * Method: `GET`
-  * URL: `/api/playlists/:artistId`
+  * URL: `/api/artists/:artistId/playlists`
   * Body: none
 
 * Successful Response
@@ -700,7 +700,7 @@ Add a song to a playlist specified by the playlist's id.
 * Require proper authorization: Playlist must belong to the current user
 * Request
   * Method: `POST`
-  * URL: `/api/playlists/:playlistId`
+  * URL: `/api/playlists/:playlistId/:songId`
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1060,7 +1060,7 @@ Update and return an existing comment.
 * Require proper authorization: Comment must belong to the current user
 * Request
   * Method: `PUT`
-  * URL: `/api/songs/:songId/comments`
+  * URL: `/api/songs/:songId/comments/:commentId`
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1125,7 +1125,7 @@ Delete an existing comment.
 * Require proper authorization: Comment must belong to the current user
 * Request
   * Method: `DELETE`
-  * URL: `/api/songs/:songId/comments`
+  * URL: `/api/songs/:songId/comments/:commentId`
   * Body: none
 
 * Successful Response
@@ -1531,7 +1531,7 @@ Return songs filtered by query parameters.
 * Require Authentication: false
 * Request
   * Method: `GET`
-  * URL: `/api/songs?page=0&size=20&title=song+title&createdAt=timestamp`
+  * URL: `/api/songs?` + `page=0&size=20&title=song+title&createdAt=timestamp`
   * Query Parameters
     * page: integer, minimum: 0, maximum: 10, default: 0
     * size: integer, minimum: 0, maximum: 20, default: 20
