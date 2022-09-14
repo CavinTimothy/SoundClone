@@ -1,5 +1,4 @@
-// Contains resources for route paths
-// beginning with '/api/session'
+// Contains resources for route paths beginning with '/api/session'
 const express = require('express');
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');

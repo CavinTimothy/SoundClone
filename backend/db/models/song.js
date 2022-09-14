@@ -10,19 +10,62 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Song.belongsTo(models.User, {
+        foreignKey: 'userId'
+      });
+      Song.belongsTo(models.Album, {
+        foreignKey: 'albumId'
+      });
+      Song.belongsToMany(models.Playlist, {
+        through: models.PlaylistSong
+      });
+      Song.hasMany(models.Comment, {
+        foreignKey: 'songId',
+        onDelete: 'CASCADE',
+        hooks: true
+      });
     }
   }
   Song.init({
-    userId: DataTypes.INTEGER,
-    albumId: DataTypes.INTEGER,
-    title: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    url: DataTypes.STRING,
-    previewImage: DataTypes.STRING
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    albumId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.TEXT
+    },
+    url: {
+      type: DataTypes.STRING
+    },
+    previewImage: {
+      type: DataTypes.STRING
+    }
   }, {
     sequelize,
     modelName: 'Song',
+    defaultScope: {
+      attributes: {
+        exclude: ['createdAt', 'updatedAt']
+      }
+    },
+    scopes: {
+      readComments: {
+        attributes: {
+          exclude: ['createdAt', 'updatedAt']
+        },
+        include: [
+          { model: Comment }
+        ]
+      }
+    }
   });
   return Song;
 };

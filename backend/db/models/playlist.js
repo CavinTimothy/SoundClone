@@ -10,16 +10,34 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Playlist.belongsTo(models.User, {
+        foreignKey: 'userId'
+      });
+      Playlist.belongsToMany(models.Song, {
+        through: models.PlaylistSong
+      });
     }
   }
   Playlist.init({
-    userId: DataTypes.INTEGER,
-    name: DataTypes.STRING,
-    previewImage: DataTypes.STRING
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    previewImage: {
+      type: DataTypes.STRING
+    }
   }, {
     sequelize,
     modelName: 'Playlist',
+    defaultScope: {
+      attributes: {
+        exclude: ['createdAt', 'updatedAt']
+      }
+    }
   });
   return Playlist;
 };

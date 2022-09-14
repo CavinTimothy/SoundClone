@@ -10,17 +10,39 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Album.belongsTo(models.User, {
+        foreignKey: 'userId'
+      });
+      Album.hasMany(models.Song, {
+        foreignKey: 'albumId',
+        onDelete: 'CASCADE',
+        hooks: true
+      });
     }
   }
   Album.init({
-    userId: DataTypes.INTEGER,
-    title: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    previewImage: DataTypes.STRING
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.TEXT
+    },
+    previewImage: {
+      type: DataTypes.STRING
+    }
   }, {
     sequelize,
     modelName: 'Album',
+    defaultScope: {
+      attributes: {
+        exclude: ['createdAt', 'updatedAt']
+      }
+    }
   });
   return Album;
 };
