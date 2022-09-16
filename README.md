@@ -1454,7 +1454,7 @@ Deletes an existing album.
 * Require proper authorization: Album must belong to the current user
 * Request
   * Method: `DELETE`
-  * URL: `/api/albums/:albumsId`
+  * URL: `/api/albums/:albumId`
   * Body: none
 
 * Successful Response
