@@ -1,4 +1,8 @@
 'use strict';
+
+const { User, Song, Album, Playlist, Comment } = require('../models');
+
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Users', {
