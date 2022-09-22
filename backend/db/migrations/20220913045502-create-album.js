@@ -10,7 +10,7 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        // allowNull: false,
         references: { model: 'Users' },
         onDelete: 'CASCADE'
       },
@@ -20,7 +20,7 @@ module.exports = {
       },
       description: {
         type: Sequelize.TEXT,
-        allowNull: false
+        // allowNull: false
       },
       previewImage: {
         type: Sequelize.STRING

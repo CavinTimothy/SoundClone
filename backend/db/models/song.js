@@ -29,11 +29,11 @@ module.exports = (sequelize, DataTypes) => {
   Song.init({
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      // allowNull: false
     },
     albumId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      // allowNull: true
     },
     title: {
       type: DataTypes.STRING,
@@ -51,21 +51,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Song',
-    defaultScope: {
-      attributes: {
-        exclude: ['createdAt', 'updatedAt']
-      }
-    },
-    scopes: {
-      readComments: {
-        attributes: {
-          exclude: ['createdAt', 'updatedAt']
-        },
-        include: [
-          { model: Comment }
-        ]
-      }
-    }
+    // defaultScope: {
+    //   attributes: {
+    //     exclude: ['createdAt', 'updatedAt']
+    //   }
+    // }
   });
   return Song;
 };

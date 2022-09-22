@@ -10,11 +10,6 @@ router.get('/:artistId', async (req, res) => {
 
 });
 
-// ***GET ALL SONGS FROM ARTIST***
-router.get('/:artistId/songs', async (req, res) => {
-
-});
-
 // ***GET ALL PLAYLISTS FROM ARTIST***
 router.get('/:artistId/playlists', async (req, res) => {
 

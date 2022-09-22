@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     songId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      // allowNull: false
     },
     body: {
       type: DataTypes.TEXT,

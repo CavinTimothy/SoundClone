@@ -272,7 +272,7 @@ Returns all the songs created by the current user.
 * Require Authentication: true
 * Request
   * Method: `GET`
-  * URL: `/api/songs/:userId`
+  * URL: `/api/songs/current`
   * Body: none
 
 * Successful Response

@@ -1,7 +1,7 @@
 // Contains resources for route paths beginning with '/api/users'
 const express = require('express');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Song, Album, Playlist, Comment } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -28,12 +28,28 @@ const validateSignup = [
   handleValidationErrors
 ];
 
-// ***SIGNUP***
+// ***SIGNUP (Feature 0)***
 router.post('/', validateSignup, async (req, res) => {
   const { firstName, lastName, email, username, password } = req.body;
   const user = await User.signup({ firstName, lastName, email, username, password });
   await setTokenCookie(res, user);
   return res.json({ user });
+});
+
+// ***GET ALL SONGS FROM ARTIST (Feature 4)***
+router.get('/:artistId/songs', async (req, res) => {
+  try {
+    const artistSongs = await Song.findAll({
+      where: { userId: req.params.artistId }
+    });
+
+    res.json({ 'Songs': artistSongs });
+  } catch (err) {
+    res.status(404).json({
+      'message': 'Artist couldn\'t be found',
+      'statusCode': 404
+    });
+  }
 });
 
 module.exports = router;
