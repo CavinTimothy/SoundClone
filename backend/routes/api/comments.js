@@ -8,11 +8,9 @@ const router = express.Router();
 // ***EDIT COMMENT (Feature 3)***
 router.put('/:commentId', requireAuth, async (req, res) => {
   try {
-    const { user } = req;
     const { body } = req.body;
 
     const editComment = await Comment.findByPk(req.params.commentId);
-
     await editComment.update({ body: body });
 
     res.json(editComment);
@@ -28,7 +26,6 @@ router.put('/:commentId', requireAuth, async (req, res) => {
 router.delete('/:commentId', requireAuth, async (req, res) => {
   try {
     const deleteComment = await Comment.findByPk(req.params.commentId);
-
     await deleteComment.destroy();
 
     res.json({ 'message': 'Successfully deleted', 'statusCode': 200 });

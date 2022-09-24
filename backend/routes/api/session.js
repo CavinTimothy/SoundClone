@@ -19,7 +19,7 @@ const validateLogin = [
   handleValidationErrors
 ];
 
-// ***LOGIN***
+// ***LOGIN (Feature 0)***
 router.post('/', validateLogin, async (req, res, next) => {
   const { credential, password } = req.body;
   const user = await User.login({ credential, password });
@@ -34,13 +34,13 @@ router.post('/', validateLogin, async (req, res, next) => {
   return res.json({ user });
 });
 
-// ***LOGOUT***
+// ***LOGOUT (Feature 0)***
 router.delete('/', (_req, res) => {
   res.clearCookie('token');
   return res.json({ message: 'success' });
 });
 
-// ***RESTORE SESSION USER***
+// ***GET CURRENT USER (Feature 0)***
 router.get('/', restoreUser, (req, res) => {
   const { user } = req;
   if (user) {

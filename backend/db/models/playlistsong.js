@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'PlaylistSong',
     defaultScope: {
       attributes: {
+        include: ['id'],
         exclude: ['createdAt', 'updatedAt']
       }
     }

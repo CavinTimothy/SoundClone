@@ -39,16 +39,12 @@ router.post('/', validateSignup, async (req, res) => {
 // ***GET ALL SONGS FROM ARTIST (Feature 4)***
 router.get('/:artistId/songs', async (req, res) => {
   try {
-    // const artistId = req.params.artistId
     const artistSongs = await Song.findAll({
       where: { userId: req.params.artistId }
     });
-    if (!artistSongs.length) {
-      return next(err)
-    }
-    // } else return res.json(artistSongs)
+    if (!artistSongs.length) next(err);
 
-    return res.json({ 'Songs': artistSongs });
+    res.json({ 'Songs': artistSongs });
   } catch (err) {
     res.status(404).json({
       'message': 'Artist couldn\'t be found',
@@ -74,9 +70,9 @@ router.get('/:artistId', async (req, res) => {
     res.json({
       'id': deets.id,
       'username': deets.username,
-      'previewImage': deets.previewImage,
       'totalSongs': totalSongs,
-      'totalAlbums': totalAlbums
+      'totalAlbums': totalAlbums,
+      'previewImage': deets.previewImage
     });
   } catch (err) {
     res.status(404).json({

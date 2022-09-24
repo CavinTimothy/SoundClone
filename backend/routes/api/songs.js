@@ -29,6 +29,9 @@ router.get('/', async (req, res) => {
   if (title) {
     query.where.title = { [Op.like]: `%${title}%` };
   }
+  if (createdAt) {
+    query.where.createdAt = { [Op.like]: `%${createdAt}%` };
+  }
 
   const queriedSongs = await Song.findAndCountAll(query);
 
@@ -117,7 +120,6 @@ router.post('/', requireAuth, async (req, res, next) => {
 // ***EDIT SONG (Feature 1)***
 router.put('/:songId', requireAuth, async (req, res) => {
   try {
-    const { user } = req;
     const { title, description, url, imageUrl } = req.body;
 
     const editSong = await Song.findOne({
@@ -144,9 +146,7 @@ router.put('/:songId', requireAuth, async (req, res) => {
 // ***DELETE SONG (Feature 1)***
 router.delete('/:songId', requireAuth, async (req, res) => {
   try {
-    const { user } = req;
     const deleteSong = await Song.findByPk(req.params.songId);
-
     await deleteSong.destroy();
 
     res.json({ 'message': 'Successfully deleted', 'statusCode': 200 });
@@ -165,7 +165,6 @@ router.delete('/:songId', requireAuth, async (req, res) => {
 router.get('/:songId/comments', async (req, res, next) => {
   try {
     const getSong = await Song.findByPk(req.params.songId);
-    if (!getSong) next(err);
     const allComments = await Comment.findAll({
       where: { songId: getSong.id },
       include: {
@@ -178,6 +177,7 @@ router.get('/:songId/comments', async (req, res, next) => {
         }
       }
     });
+    if (!allComments.length) next(err);
 
     res.json(allComments);
   } catch (err) {
@@ -195,12 +195,12 @@ router.post('/:songId/comments', requireAuth, async (req, res, next) => {
     const { body } = req.body;
 
     const getSong = await Song.findByPk(req.params.songId);
-    if (!getSong) next(err);
     const newComment = await Comment.create({ body: body });
+
     await getSong.addComment(newComment);
     await user.addComment(newComment);
 
-    res.json(newComment);
+    res.json(await Comment.findByPk(newComment.id));
   } catch (err) {
     res.status(404).json({
       'message': 'Song couldn\'t be found',
@@ -208,40 +208,5 @@ router.post('/:songId/comments', requireAuth, async (req, res, next) => {
     });
   }
 });
-
-// ***EDIT COMMENT (Feature 3)***
-// router.put('/:songId/comments/:commentId', requireAuth, async (req, res) => {
-//   try {
-//     const { user } = req;
-//     const { body } = req.body;
-
-//     const editComment = await Comment.findByPk(req.params.commentId);
-
-//     await editComment.update({ body: body });
-
-//     res.json(editComment);
-//   } catch (err) {
-//     res.status(404).json({
-//       'message': 'Comment couldn\'t be found',
-//       'statusCode': 404
-//     });
-//   }
-// });
-
-// ***DELETE COMMENT (Feature 3)***
-// router.delete('/:songId/comments/:commentId', requireAuth, async (req, res) => {
-//   try {
-//     const deleteComment = await Comment.findByPk(req.params.commentId);
-
-//     await deleteComment.destroy();
-
-//     res.json({ 'message': 'Successfully deleted', 'statusCode': 200 });
-//   } catch (err) {
-//     res.status(404).json({
-//       'message': 'Comment couldn\'t be found',
-//       'statusCode': 404
-//     });
-//   }
-// });
 
 module.exports = router;

@@ -42,7 +42,7 @@ router.get('/:albumId', async (req, res) => {
     });
     if (!deets) next(err);
 
-    return res.json(deets);
+    res.json(deets);
   } catch (err) {
     res.status(404).json({
       'message': 'Album couldn\'t be found',
@@ -69,7 +69,6 @@ router.post('/', requireAuth, async (req, res) => {
 // ***EDIT ALBUM (Feature 2)***
 router.put('/:albumId', requireAuth, async (req, res) => {
   try {
-    const { user } = req;
     const { title, description, imageUrl } = req.body;
 
     const editAlbum = await Album.findOne({

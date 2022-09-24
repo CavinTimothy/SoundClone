@@ -1,16 +1,18 @@
 // Contains resources for route paths beginning with '/api/playlists'
 const express = require('express')
 const { requireAuth } = require('../../utils/auth');
-const { User, Song, Album, Playlist, Comment } = require('../../db/models');
+const { User, Song, Album, Playlist, PlaylistSong, Comment } = require('../../db/models');
 
 const router = express.Router();
 
 // ***GET ALL USER'S PLAYLISTS (Feature 5)***
 router.get('/current', requireAuth, async (req, res) => {
   const { user } = req;
+
   const userPlaylists = await Playlist.findAll({
     where: { userId: user.id }
   });
+
   res.json(userPlaylists);
 });
 
@@ -25,7 +27,7 @@ router.post('/', requireAuth, async (req, res) => {
   });
   await user.addPlaylist(newPlaylist);
 
-  res.json(newPlaylist);
+  res.json(await Playlist.findByPk(newPlaylist.id));
 });
 
 // ***ADD SONG TO PLAYLIST (Feature 5)***
@@ -34,14 +36,25 @@ router.post('/:playlistId/songs', requireAuth, async (req, res) => {
     const { songId } = req.body;
 
     const addSong = await Song.findByPk(songId);
-    const artistPlaylist = await Playlist.findByPk(req.params.playlistId);
 
+    const artistPlaylist = await Playlist.findByPk(req.params.playlistId);
     await artistPlaylist.addSong(addSong);
 
-    res.json(artistPlaylist);
+    const join = await PlaylistSong.findOne({
+      where: {
+        playlistId: req.params.playlistId,
+        songId: songId
+      }
+    });
+
+    res.json({
+      'id': join.id,
+      'playlistId': join.id,
+      'songId': join.id
+    });
   } catch (err) {
     res.status(404).json({
-      'message': 'Playlist couldn\'t be found',
+      'message': 'Playlist or Song couldn\'t be found',
       'statusCode': 404
     });
   }
@@ -93,7 +106,6 @@ router.put('/:playlistId', requireAuth, async (req, res) => {
 router.delete('/:playlistId', requireAuth, async (req, res) => {
   try {
     const deletePlaylist = await Playlist.findByPk(req.params.playlistId);
-
     await deletePlaylist.destroy();
 
     res.json({ 'message': 'Successfully deleted', 'statusCode': 200 });
