@@ -1060,7 +1060,7 @@ Update and return an existing comment.
 * Require proper authorization: Comment must belong to the current user
 * Request
   * Method: `PUT`
-  * URL: `/api/songs/:songId/comments/:commentId`
+  * URL: `/api/comments/:commentId`
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1125,7 +1125,7 @@ Delete an existing comment.
 * Require proper authorization: Comment must belong to the current user
 * Request
   * Method: `DELETE`
-  * URL: `/api/songs/:songId/comments/:commentId`
+  * URL: `/api/comments/:commentId`
   * Body: none
 
 * Successful Response
