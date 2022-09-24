@@ -210,38 +210,38 @@ router.post('/:songId/comments', requireAuth, async (req, res, next) => {
 });
 
 // ***EDIT COMMENT (Feature 3)***
-router.put('/:songId/comments/:commentId', requireAuth, async (req, res) => {
-  try {
-    const { user } = req;
-    const { body } = req.body;
+// router.put('/:songId/comments/:commentId', requireAuth, async (req, res) => {
+//   try {
+//     const { user } = req;
+//     const { body } = req.body;
 
-    const editComment = await Comment.findByPk(req.params.commentId);
+//     const editComment = await Comment.findByPk(req.params.commentId);
 
-    await editComment.update({ body: body });
+//     await editComment.update({ body: body });
 
-    res.json(editComment);
-  } catch (err) {
-    res.status(404).json({
-      'message': 'Comment couldn\'t be found',
-      'statusCode': 404
-    });
-  }
-});
+//     res.json(editComment);
+//   } catch (err) {
+//     res.status(404).json({
+//       'message': 'Comment couldn\'t be found',
+//       'statusCode': 404
+//     });
+//   }
+// });
 
 // ***DELETE COMMENT (Feature 3)***
-router.delete('/:songId/comments/:commentId', requireAuth, async (req, res) => {
-  try {
-    const deleteComment = await Comment.findByPk(req.params.commentId);
+// router.delete('/:songId/comments/:commentId', requireAuth, async (req, res) => {
+//   try {
+//     const deleteComment = await Comment.findByPk(req.params.commentId);
 
-    await deleteComment.destroy();
+//     await deleteComment.destroy();
 
-    res.json({ 'message': 'Successfully deleted', 'statusCode': 200 });
-  } catch (err) {
-    res.status(404).json({
-      'message': 'Comment couldn\'t be found',
-      'statusCode': 404
-    });
-  }
-});
+//     res.json({ 'message': 'Successfully deleted', 'statusCode': 200 });
+//   } catch (err) {
+//     res.status(404).json({
+//       'message': 'Comment couldn\'t be found',
+//       'statusCode': 404
+//     });
+//   }
+// });
 
 module.exports = router;

@@ -41,7 +41,7 @@ router.post('/:playlistId/songs', requireAuth, async (req, res) => {
     res.json(artistPlaylist);
   } catch (err) {
     res.status(404).json({
-      'message': '1Playlist couldn\'t be found',
+      'message': 'Playlist couldn\'t be found',
       'statusCode': 404
     });
   }
@@ -59,7 +59,7 @@ router.get('/:playlistId', async (req, res) => {
     res.json(deets);
   } catch (err) {
     res.status(404).json({
-      'message': '2Playlist couldn\'t be found',
+      'message': 'Playlist couldn\'t be found',
       'statusCode': 404
     });
   }
@@ -83,7 +83,7 @@ router.put('/:playlistId', requireAuth, async (req, res) => {
     res.json(editPlaylist);
   } catch (err) {
     res.status(404).json({
-      'message': '3Playlist couldn\'t be found',
+      'message': 'Playlist couldn\'t be found',
       'statusCode': 404
     });
   }
@@ -99,7 +99,7 @@ router.delete('/:playlistId', requireAuth, async (req, res) => {
     res.json({ 'message': 'Successfully deleted', 'statusCode': 200 });
   } catch (err) {
     res.status(404).json({
-      'message': '4Playlist couldn\'t be found',
+      'message': 'Playlist couldn\'t be found',
       'statusCode': 404
     });
   }

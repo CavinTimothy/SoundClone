@@ -57,4 +57,50 @@ router.get('/:artistId/songs', async (req, res) => {
   }
 });
 
+// ***GET DETAILS OF ARTIST (Feature 4)***
+router.get('/:artistId', async (req, res) => {
+  try {
+    const deets = await User.findOne({
+      where: { id: req.params.artistId },
+    });
+
+    const totalSongs = await Song.count({
+      where: { userId: req.params.artistId }
+    });
+    const totalAlbums = await Album.count({
+      where: { userId: req.params.artistId }
+    });
+
+    res.json({
+      'id': deets.id,
+      'username': deets.username,
+      'previewImage': deets.previewImage,
+      'totalSongs': totalSongs,
+      'totalAlbums': totalAlbums
+    });
+  } catch (err) {
+    res.status(404).json({
+      'message': 'Artist couldn\'t be found',
+      'statusCode': 404
+    });
+  }
+});
+
+// ***GET ALL PLAYLISTS FROM ARTIST (Feature 5)***
+router.get('/:artistId/playlists', async (req, res) => {
+  try {
+    const artistPlaylist = await Playlist.findAll({
+      where: { userId: req.params.artistId }
+    });
+    if (!artistPlaylist.length) next(err);
+
+    res.json({ 'Playlists': artistPlaylist });
+  } catch (err) {
+    res.status(404).json({
+      'message': 'Artist couldn\'t be found',
+      'statusCode': 404
+    });
+  }
+});
+
 module.exports = router;
