@@ -58,9 +58,21 @@ router.get('/:artistId', async (req, res) => {
   }
 });
 
-// ***GET ALL PLAYLISTS FROM ARTIST***
+// ***GET ALL PLAYLISTS FROM ARTIST (Feature 5)***
 router.get('/:artistId/playlists', async (req, res) => {
+  try {
+    const artistPlaylist = await Playlist.findAll({
+      where: { userId: req.params.artistId }
+    });
+    if (!artistPlaylist.length) next(err);
 
+    res.json({ 'Playlists': artistPlaylist });
+  } catch (err) {
+    res.status(404).json({
+      'message': 'Artist couldn\'t be found',
+      'statusCode': 404
+    });
+  }
 });
 
 // ***GET ALL ALBUMS FROM ARTIST (Feature 4)***

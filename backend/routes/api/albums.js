@@ -71,7 +71,6 @@ router.put('/:albumId', requireAuth, async (req, res) => {
   try {
     const { user } = req;
     const { title, description, imageUrl } = req.body;
-    const { albumId } = req.params.albumId;
 
     const editAlbum = await Album.findOne({
       where: { id: req.params.albumId }

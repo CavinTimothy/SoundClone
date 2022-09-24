@@ -123,9 +123,14 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    const Op = Sequelize.Op;
-    return queryInterface.bulkDelete('Users', {
-      username: { [Op.in]: ['SteveLacy', 'Gorillaz'] }
-    }, {});
+    // const Op = Sequelize.Op;
+    // return queryInterface.bulkDelete('Users', {
+    //   username: { [Op.in]: ['SteveLacy', 'Gorillaz'] }
+    // }, {});
+    for (let i = 0; i < userSongs.length; i++) {
+      const { username } = userSongs[i];
+      await User.destroy({ where: { username: username } });
+
+    }
   }
 };

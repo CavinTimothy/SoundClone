@@ -1,14 +1,38 @@
 // Contains resources for route paths beginning with '/api/songs'
 const express = require('express')
 const { requireAuth } = require('../../utils/auth');
+const { Op } = require('sequelize');
 const { User, Song, Album, Playlist, Comment } = require('../../db/models');
 
 const router = express.Router();
 
 // ***GET ALL SONGS (Feature 1)***
+// ***QUERY FILTERS (Feature 5)***
 router.get('/', async (req, res) => {
-  const allSongs = await Song.findAll();
-  res.json(allSongs);
+  if (!req.query.page && !req.query.size) res.json(await Song.findAll());
+
+  const { title, createdAt } = req.query;
+
+  let query = {
+    where: {},
+    include: [],
+  };
+
+  const page = req.query.page === undefined ? 1 : parseInt(req.query.page);
+  const size = req.query.size === undefined ? 3 : parseInt(req.query.size);
+
+  if (page >= 1 && size >= 1) {
+    query.limit = size;
+    query.offset = size * (page - 1);
+  }
+
+  if (title) {
+    query.where.title = { [Op.like]: `%${title}%` };
+  }
+
+  const queriedSongs = await Song.findAndCountAll(query);
+
+  res.json(queriedSongs);
 });
 
 // ***GET ALL USER'S SONGS (Feature 1)***
@@ -132,11 +156,6 @@ router.delete('/:songId', requireAuth, async (req, res) => {
       'statusCode': 404
     });
   }
-});
-
-// ***GET SONGS WITH QUERY FILTERS (Feature 5)***
-router.get('/?', async (req, res) => {
-
 });
 
 // *****COMMENT ROUTES***** //
