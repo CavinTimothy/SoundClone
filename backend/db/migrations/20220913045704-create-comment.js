@@ -19,7 +19,7 @@ module.exports = {
       },
       songId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        // allowNull: false,
         references: { model: 'Songs' },
         onDelete: 'CASCADE'
       },
