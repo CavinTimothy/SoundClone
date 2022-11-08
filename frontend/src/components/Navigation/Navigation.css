@@ -1,0 +1,33 @@
+.navbar {
+  background-color: #333;
+  height: 45px;
+  width: 100%;
+  display: flex;
+}
+
+#home {
+  height: 100%;
+  width: auto;
+  border-style: hidden;
+  background: linear-gradient(#f70, #f30);
+}
+
+.fa-soundcloud {
+  color: #fff;
+  font-size: 130%;
+  margin-right: 2px;
+}
+
+.font {
+  font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
+  color: #fff;
+  font-size: x-large;
+}
+
+.navButton {
+  border-top: hidden;
+  border-bottom: hidden;
+  border-color: rgba(56, 56, 56, 0.8);
+  color: #fff;
+  background-color: #333;
+}

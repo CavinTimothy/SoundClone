@@ -7,8 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     // Returns an object with only the User instance information
     // that is safe to save to a JWT.
     toSafeObject() {
-      const { id, username, email } = this; // Context will be the User instance.
-      return { id, username, email };
+      const { id, firstName, lastName, username, email } = this; // Context will be the User instance.
+      return { id, firstName, lastName, username, email };
     }
     // ***PASSWORD VALIDATOR***
     // Accepts a password string and returns true if there is a match with the
