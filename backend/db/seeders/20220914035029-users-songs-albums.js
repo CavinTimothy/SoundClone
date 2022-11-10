@@ -9,38 +9,25 @@ const userSongs = [
     firstName: 'Steve',
     lastName: 'Lacy',
     email: 'stevelacy@musician.com',
-    username: 'SteveLacy',
+    username: 'Steve Lacy',
     hashedPassword: bcrypt.hashSync('thatstevelacy'),
     albums: [
       {
         albumTitle: 'Gemini Rights',
-        description: 'R&B/Soul',
-        image: 'true',
+        description: '#R&B/Soul',
+        image: null,
         songs: [
           {
-            title: 'Static',
-            url: 'true',
-            previewImage: 'true',
-          },
-          {
             title: 'Helmet',
-            url: 'true',
-            previewImage: 'true',
-          },
-          {
-            title: 'Mercury',
-            url: 'true',
-            previewImage: 'true',
-          },
-          {
-            title: 'Buttons',
-            url: 'true',
-            previewImage: 'true',
+            url: 'songs/Helmet.mp3',
+            previewImage: 'images/Helmet.jpeg',
+            description: '#R&B/Soul'
           },
           {
             title: 'Bad Habit',
-            url: 'true',
-            previewImage: 'true',
+            url: 'songs/Bad-Habit.mp3',
+            previewImage: 'images/Bad-Habits.jpeg',
+            description: '#R&B/Soul'
           }
         ]
       }
@@ -55,33 +42,20 @@ const userSongs = [
     albums: [
       {
         albumTitle: 'The Now Now',
-        description: 'Alternative',
-        image: 'true',
+        description: '#Alternative',
+        image: 'images/The-Now-Now.jpeg',
         songs: [
           {
             title: 'Humility',
-            url: 'true',
-            previewImage: 'true'
+            url: 'songs/Humility.mp3',
+            previewImage: null,
+            description: '#Alternative'
           },
           {
             title: 'Tranz',
-            url: 'true',
-            previewImage: 'true'
-          },
-          {
-            title: 'Hollywood',
-            url: 'true',
-            previewImage: 'true'
-          },
-          {
-            title: 'Kansas',
-            url: 'true',
-            previewImage: 'true'
-          },
-          {
-            title: 'Sorcererz',
-            url: 'true',
-            previewImage: 'true'
+            url: 'songs/Tranz.mp3',
+            previewImage: null,
+            description: '#Alternative'
           }
         ]
       }
@@ -109,11 +83,14 @@ module.exports = {
         });
         await artist.addAlbum(artistAlbum);
         for (let k = 0; k < songs.length; k++) {
-          const { title, url, previewImage } = songs[k];
+          const { title, url, previewImage, description } = songs[k];
+          let songImage
+          !previewImage ? songImage = artistAlbum.previewImage : songImage = previewImage;
           const artistSong = await Song.create({
             title: title,
             url: url,
-            previewImage: previewImage
+            previewImage: songImage,
+            description: description
           });
           await artist.addSong(artistSong);
           await artistAlbum.addSong(artistSong);

@@ -1,0 +1,17 @@
+.formContainer {
+  /* width: 60%;
+  height: 70%; */
+  align-content: center;
+  margin: auto;
+}
+
+.uploadForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploadItem {
+  margin: 2px;
+}

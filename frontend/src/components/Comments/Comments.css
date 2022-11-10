@@ -1,0 +1,23 @@
+.parent {
+  display: block;
+}
+
+.commentUl {
+  list-style-type: none;
+}
+
+.commentItem {
+  border-bottom-style: groove;
+  padding: 1%;
+}
+
+.delete {
+  color: #f70;
+  background: #fff;
+  border-radius: 10%;
+}
+
+#comment {
+  color: gray;
+  font-size: small;
+}

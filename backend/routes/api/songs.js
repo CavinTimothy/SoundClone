@@ -2,6 +2,18 @@
 const express = require('express')
 const { requireAuth } = require('../../utils/auth');
 const { Op } = require('sequelize');
+const multer = require('multer');
+// const upload = multer({ dest: 'uploads/' });
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, 'bat' + path.extname(file.originalname))
+  }
+});
+const upload = multer({ storage: storage });
+// const uploadImage = multer({ dest: 'images/'})
 const { User, Song, Album, Playlist, Comment } = require('../../db/models');
 
 const router = express.Router();
@@ -10,32 +22,33 @@ const router = express.Router();
 // ***QUERY FILTERS (Feature 5)***
 router.get('/', async (req, res) => {
   if (!req.query.page && !req.query.size) res.json(await Song.findAll());
+  else {
+    const { title, createdAt } = req.query;
 
-  const { title, createdAt } = req.query;
+    let query = {
+      where: {},
+      include: [],
+    };
 
-  let query = {
-    where: {},
-    include: [],
-  };
+    const page = req.query.page === undefined ? 1 : parseInt(req.query.page);
+    const size = req.query.size === undefined ? 3 : parseInt(req.query.size);
 
-  const page = req.query.page === undefined ? 1 : parseInt(req.query.page);
-  const size = req.query.size === undefined ? 3 : parseInt(req.query.size);
+    if (page >= 1 && size >= 1) {
+      query.limit = size;
+      query.offset = size * (page - 1);
+    }
 
-  if (page >= 1 && size >= 1) {
-    query.limit = size;
-    query.offset = size * (page - 1);
+    if (title) {
+      query.where.title = { [Op.like]: `%${title}%` };
+    }
+    if (createdAt) {
+      query.where.createdAt = { [Op.like]: `%${createdAt}%` };
+    }
+
+    const queriedSongs = await Song.findAndCountAll(query);
+
+    res.json(queriedSongs);
   }
-
-  if (title) {
-    query.where.title = { [Op.like]: `%${title}%` };
-  }
-  if (createdAt) {
-    query.where.createdAt = { [Op.like]: `%${createdAt}%` };
-  }
-
-  const queriedSongs = await Song.findAndCountAll(query);
-
-  res.json(queriedSongs);
 });
 
 // ***GET ALL USER'S SONGS (Feature 1)***
@@ -86,16 +99,41 @@ router.get('/:songId', async (req, res) => {
 });
 
 // ***CREATE SONG (Feature 1)***
-router.post('/', requireAuth, async (req, res, next) => {
+// router.post('/', requireAuth, async (req, res, next) => {
+router.post('/', [requireAuth, upload.fields([{ name: 'url', maxCount: 1 }, { name: 'previewImage', maxCount: 1 }])], async (req, res, next) => {
   try {
     const { user } = req;
-    const { title, description, url, imageUrl, albumId } = req.body;
+    // const { title, description, url, previewImage, albumId } = req.body;
+    const { title, description, albumId, url, previewImage } = req.body;
+    // const previewImage = req.files
+    // const url = req.files
+    // console.log("HEADER: ", req.headers);
+    // if (req.file) {
+    //   console.log("REQ.FILE:");
+    //   console.log(req.file);
+    //   throw new Error(err)
+    // }
+    // if (req.files) {
+    //   console.log("REQ.FILES:");
+    //   console.log(req.files);
+    //   console.log("REQ.BODY");
+    //   console.log(req.body);
+    //   throw new Error(err)
+    // } else {
+    //   console.log("REQ.BODY");
+    //   console.log(req.body);
+
+    //   console.log("REQ.FILE:");
+    //   console.log(req.files);
+    //   throw new Error(err)
+    // }
+    // console.log("HEADER ", req.headers);
 
     const newSong = await Song.create({
-      title: title,
-      description: description,
-      url: url,
-      previewImage: imageUrl
+      title,
+      description,
+      url,
+      previewImage,
     });
 
     if (albumId) {
@@ -165,7 +203,7 @@ router.delete('/:songId', requireAuth, async (req, res) => {
 router.get('/:songId/comments', async (req, res, next) => {
   try {
     const getSong = await Song.findByPk(req.params.songId);
-    const allComments = await Comment.findAll({
+    let allComments = await Comment.findAll({
       where: { songId: getSong.id },
       include: {
         model: User,
@@ -177,7 +215,7 @@ router.get('/:songId/comments', async (req, res, next) => {
         }
       }
     });
-    if (!allComments.length) next(err);
+    if (!allComments.length) allComments = [];
 
     res.json(allComments);
   } catch (err) {
