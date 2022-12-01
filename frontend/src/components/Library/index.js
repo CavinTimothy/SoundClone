@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -11,6 +12,23 @@ function Library() {
   useEffect(() => {
     dispatch(loadList());
   }, [dispatch]);
+=======
+// import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+// import React, { useEffect } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Library.css'
+// import { loadList } from '../../store/songs';
+
+function Library() {
+  // const dispatch = useDispatch();
+  const userSongs = useSelector((state) => Object.values(state.songs.mySongs));
+
+  // useEffect(() => {
+  //   dispatch(loadList());
+  // }, [dispatch]);
+>>>>>>> dev
 
   return (
     <div className='libParent'>

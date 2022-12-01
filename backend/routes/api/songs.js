@@ -22,32 +22,33 @@ const router = express.Router();
 // ***QUERY FILTERS (Feature 5)***
 router.get('/', async (req, res) => {
   if (!req.query.page && !req.query.size) res.json(await Song.findAll());
+  else {
+    const { title, createdAt } = req.query;
 
-  const { title, createdAt } = req.query;
+    let query = {
+      where: {},
+      include: [],
+    };
 
-  let query = {
-    where: {},
-    include: [],
-  };
+    const page = req.query.page === undefined ? 1 : parseInt(req.query.page);
+    const size = req.query.size === undefined ? 3 : parseInt(req.query.size);
 
-  const page = req.query.page === undefined ? 1 : parseInt(req.query.page);
-  const size = req.query.size === undefined ? 3 : parseInt(req.query.size);
+    if (page >= 1 && size >= 1) {
+      query.limit = size;
+      query.offset = size * (page - 1);
+    }
 
-  if (page >= 1 && size >= 1) {
-    query.limit = size;
-    query.offset = size * (page - 1);
+    if (title) {
+      query.where.title = { [Op.like]: `%${title}%` };
+    }
+    if (createdAt) {
+      query.where.createdAt = { [Op.like]: `%${createdAt}%` };
+    }
+
+    const queriedSongs = await Song.findAndCountAll(query);
+
+    res.json(queriedSongs);
   }
-
-  if (title) {
-    query.where.title = { [Op.like]: `%${title}%` };
-  }
-  if (createdAt) {
-    query.where.createdAt = { [Op.like]: `%${createdAt}%` };
-  }
-
-  const queriedSongs = await Song.findAndCountAll(query);
-
-  res.json(queriedSongs);
 });
 
 // ***GET ALL USER'S SONGS (Feature 1)***
@@ -205,7 +206,7 @@ router.delete('/:songId', requireAuth, async (req, res) => {
 router.get('/:songId/comments', async (req, res, next) => {
   try {
     const getSong = await Song.findByPk(req.params.songId);
-    const allComments = await Comment.findAll({
+    let allComments = await Comment.findAll({
       where: { songId: getSong.id },
       include: {
         model: User,
@@ -217,7 +218,7 @@ router.get('/:songId/comments', async (req, res, next) => {
         }
       }
     });
-    if (!allComments.length) next(err);
+    if (!allComments.length) allComments = [];
 
     res.json(allComments);
   } catch (err) {

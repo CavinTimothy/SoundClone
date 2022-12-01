@@ -24,3 +24,7 @@ yarn-debug.log*
 yarn-error.log*
 
 *.db
+
+# dev
+frontend/public/images/
+frontend/public/songs/

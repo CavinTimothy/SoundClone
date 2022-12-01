@@ -98,7 +98,11 @@ export const editSong = (info, songId) => async dispatch => {
     body: JSON.stringify(info)
   });
   if (response.ok) {
+<<<<<<< HEAD
     const updatedSong = await response.json();
+=======
+    const updatedSong = await csrfFetch(`/api/songs/${songId}`).then(res => res.json());
+>>>>>>> dev
     dispatch(setSong(updatedSong));
     return updatedSong;
   }
@@ -131,7 +135,11 @@ const songReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SONG:
       state.mySongs[action.song.id] = action.song
+<<<<<<< HEAD
       return { ...state, curr: action.song };
+=======
+      return { ...state };
+>>>>>>> dev
     case GET_ONE:
       return { ...state, curr: action.song };
     case GET_ALL:

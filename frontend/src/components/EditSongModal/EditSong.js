@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import * as songActions from '../../store/songs';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -6,6 +7,11 @@ import { useParams } from 'react-router-dom';
 function EditSong({ reRender }) {
   const dispatch = useDispatch();
   const { songId } = useParams();
+=======
+import { useSelector } from 'react-redux';
+
+function EditSong({ reRender }) {
+>>>>>>> dev
   const song = useSelector(state => state.songs.curr);
 
   const [title, setTitle] = useState(song.title);
@@ -25,13 +31,21 @@ function EditSong({ reRender }) {
       imageUrl: previewImage
     }
 
+<<<<<<< HEAD
     dispatch(songActions.editSong(payload, songId))
+=======
+    // dispatch(songActions.editSong(payload, songId))
+>>>>>>> dev
     // .catch(async (res) => {
     //   const data = await res.json();
     //   if (data && data.errors) setErrors(data.errors);
     // });
 
+<<<<<<< HEAD
     reRender();
+=======
+    reRender(payload);
+>>>>>>> dev
   }
 
   return (
