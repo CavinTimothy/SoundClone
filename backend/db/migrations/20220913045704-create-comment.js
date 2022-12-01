@@ -1,6 +1,9 @@
 'use strict';
 
-const { User, Song, Album, Playlist, Comment } = require('../models');
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+}
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -37,9 +40,9 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    });
+    }, options);
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Comments');
+    await queryInterface.dropTable('Comments', options);
   }
 };

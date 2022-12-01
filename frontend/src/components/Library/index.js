@@ -1,16 +1,18 @@
-import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+// import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './Library.css'
-import { loadList } from '../../store/songs';
+// import { loadList } from '../../store/songs';
 
 function Library() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const userSongs = useSelector((state) => Object.values(state.songs.mySongs));
 
-  useEffect(() => {
-    dispatch(loadList());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(loadList());
+  // }, [dispatch]);
 
   return (
     <div className='libParent'>
