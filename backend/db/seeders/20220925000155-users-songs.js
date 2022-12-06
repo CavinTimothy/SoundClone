@@ -55,11 +55,7 @@ const userSongs = {
     },
     {
       title: 'Deceptacon',
-<<<<<<< HEAD
-      url: 'songs/Decaptacon.mp3',
-=======
       url: 'songs/Deceptacon.mp3',
->>>>>>> dev
       previewImage: 'images/Le-Tigre.jpeg',
       description: '#Alternative'
     },

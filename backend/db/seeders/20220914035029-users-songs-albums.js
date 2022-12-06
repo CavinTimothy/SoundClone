@@ -47,21 +47,13 @@ const userSongs = [
         songs: [
           {
             title: 'Humility',
-<<<<<<< HEAD
-            url: 'true',
-=======
             url: 'songs/Humility.mp3',
->>>>>>> dev
             previewImage: null,
             description: '#Alternative'
           },
           {
             title: 'Tranz',
-<<<<<<< HEAD
-            url: 'true',
-=======
             url: 'songs/Tranz.mp3',
->>>>>>> dev
             previewImage: null,
             description: '#Alternative'
           }
