@@ -2,18 +2,7 @@
 const express = require('express')
 const { requireAuth } = require('../../utils/auth');
 const { Op } = require('sequelize');
-const multer = require('multer');
-// const upload = multer({ dest: 'uploads/' });
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/')
-  },
-  filename: function (req, file, cb) {
-    cb(null, 'bat' + path.extname(file.originalname))
-  }
-});
-const upload = multer({ storage: storage });
-// const uploadImage = multer({ dest: 'images/'})
+const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3');
 const { User, Song, Album, Playlist, Comment } = require('../../db/models');
 
 const router = express.Router();
@@ -99,35 +88,13 @@ router.get('/:songId', async (req, res) => {
 });
 
 // ***CREATE SONG (Feature 1)***
-// router.post('/', requireAuth, async (req, res, next) => {
-router.post('/', [requireAuth, upload.fields([{ name: 'url', maxCount: 1 }, { name: 'previewImage', maxCount: 1 }])], async (req, res, next) => {
+router.post('/', requireAuth, singleMulterUpload("url"), singleMulterUpload("previewImage"), async (req, res, next) => {
   try {
     const { user } = req;
-    // const { title, description, url, previewImage, albumId } = req.body;
-    const { title, description, albumId, url, previewImage } = req.body;
-    // const previewImage = req.files
-    // const url = req.files
-    // console.log("HEADER: ", req.headers);
-    // if (req.file) {
-    //   console.log("REQ.FILE:");
-    //   console.log(req.file);
-    //   throw new Error(err)
-    // }
-    // if (req.files) {
-    //   console.log("REQ.FILES:");
-    //   console.log(req.files);
-    //   console.log("REQ.BODY");
-    //   console.log(req.body);
-    //   throw new Error(err)
-    // } else {
-    //   console.log("REQ.BODY");
-    //   console.log(req.body);
-
-    //   console.log("REQ.FILE:");
-    //   console.log(req.files);
-    //   throw new Error(err)
-    // }
-    // console.log("HEADER ", req.headers);
+    // const { title, description, albumId, url, previewImage } = req.body;
+    const { title, description, albumId } = req.body;
+    const previewImage = singlePublicFileUpload(req.files.previewImage);
+    const url = singlePublicFileUpload(req.files.url);
 
     const newSong = await Song.create({
       title,
@@ -156,9 +123,12 @@ router.post('/', [requireAuth, upload.fields([{ name: 'url', maxCount: 1 }, { na
 });
 
 // ***EDIT SONG (Feature 1)***
-router.put('/:songId', requireAuth, async (req, res) => {
+router.put('/:songId', requireAuth, singleMulterUpload("url"), singleMulterUpload("previewImage"), async (req, res) => {
   try {
-    const { title, description, url, imageUrl } = req.body;
+    // const { title, description, url, imageUrl } = req.body;
+    const { title, description } = req.body;
+    const previewImage = singlePublicFileUpload(req.files.previewImage);
+    const url = singlePublicFileUpload(req.files.url);
 
     const editSong = await Song.findOne({
       where: { id: req.params.songId }
@@ -166,10 +136,10 @@ router.put('/:songId', requireAuth, async (req, res) => {
     if (!editSong) next(err);
 
     await editSong.update({
-      title: title,
-      description: description,
-      url: url,
-      previewImage: imageUrl
+      title,
+      description,
+      url,
+      previewImage,
     });
 
     res.json(editSong);

@@ -13,80 +13,80 @@ const userSongs = {
   songs: [
     {
       title: 'Chicago',
-      url: 'songs/Chicago.mp3',
-      previewImage: 'images/Chicago.jpg',
+      url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Chicago.mp3',
+      previewImage: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Chicago.jpg',
       description: '#Pop'
     },
     {
       title: 'Dark Red',
-      url: 'songs/Dark-Red.mp3',
-      previewImage: 'images/Dark-Red.jpeg',
+      url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Dark-Red.mp3',
+      previewImage: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Dark-Red.jpeg',
       description: '#R&B/Soul'
     },
     {
       title: 'Doomsday',
-      url: 'songs/Doomsday.mp3',
-      previewImage: 'images/Doomsday.jpeg',
+      url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Doomsday.mp3',
+      previewImage: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Doomsday.jpeg',
       description: '#Hip Hop'
     },
     {
       title: 'Flashing Lights',
-      url: 'songs/Flashing-Lights.mp3',
-      previewImage: 'images/Flashing-Lights.jpeg',
+      url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Flashing-Lights.mp3',
+      previewImage: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Flashing-Lights.jpeg',
       description: '#Hip Hop'
     },
     {
       title: 'Joker and the Thief',
-      url: 'songs/Joker-n-the-Thief.mp3',
-      previewImage: 'images/Joker-And-The-Thief.jpeg',
+      url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Joker-n-the-Thief.mp3',
+      previewImage: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Joker-And-The-Thief.jpeg',
       description: '#Rock'
     },
     {
       title: 'Juice',
-      url: 'songs/Juice.mp3',
-      previewImage: 'images/Juice.jpeg',
+      url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Juice.mp3',
+      previewImage: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Juice.jpeg',
       description: '#Hip Hop'
     },
     {
       title: 'Killing in the Name',
-      url: 'songs/Killing-In-The-Name.mp3',
-      previewImage: 'images/Killing-In-The-Name.jpeg',
+      url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Killing-In-The-Name.mp3',
+      previewImage: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Killing-In-The-Name.jpeg',
       description: '#Rock'
     },
     {
       title: 'Deceptacon',
-      url: 'songs/Deceptacon.mp3',
-      previewImage: 'images/Le-Tigre.jpeg',
+      url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Deceptacon.mp3',
+      previewImage: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Le-Tigre.jpeg',
       description: '#Alternative'
     },
     {
       title: 'Mayonaka no door / Stay with me',
-      url: 'songs/Stay-With-Me.mp3',
-      previewImage: 'images/Mayonaka-No-Door-Stay-With-Me.jpeg',
+      url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Stay-With-Me.mp3',
+      previewImage: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Mayonaka-No-Door-Stay-With-Me.jpeg',
       description: '#J-Pop'
     },
     {
       title: 'No Role Modelz',
-      url: 'songs/No-Role-Modelz.mp3',
-      previewImage: 'images/No-Role-Modelz.jpeg',
+      url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/No-Role-Modelz.mp3',
+      previewImage: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/No-Role-Modelz.jpeg',
       description: '#Hip Hop'
     },
     {
       title: 'RENTAL',
-      url: 'songs/RENTAL.mp3',
-      previewImage: 'images/RENTAL.png',
+      url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/RENTAL.mp3',
+      previewImage: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/RENTAL.png',
       description: '#Rap'
     },
     {
       title: 'Shaolin Temple',
-      url: 'songs/Shaolin-Temple.mp3',
-      previewImage: 'images/Shaolin-Temple.png',
+      url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Shaolin-Temple.mp3',
+      previewImage: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Shaolin-Temple.png',
       description: '#Hip Hop'
     },
     {
       title: 'SLOW DANCING IN THE DARK',
-      url: 'songs/SLOW-DANCING-IN-THE-DARK.mp3',
-      previewImage: 'images/Slow-Dancing-In-The-Dark.png',
+      url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/SLOW-DANCING-IN-THE-DARK.mp3',
+      previewImage: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Slow-Dancing-In-The-Dark.png',
       description: '#Alternative'
     },
   ]
