@@ -66,8 +66,8 @@ function Upload() {
         <label className='uploadItem uploadFile'>
           Song Image
           <input
-            type="file"
-            // type="text"
+            // type="file"
+            type="text"
             value={previewImage}
             onChange={(e) => setPreviewImage(e.target.value)}
             required
@@ -76,8 +76,8 @@ function Upload() {
         <label className='uploadItem uploadFile'>
           Song URL
           <input
-            type="file"
-            // type="text"
+            // type="file"
+            type="text"
             id="url"
             value={url}
             onChange={(e) => setUrl(e.target.value)}

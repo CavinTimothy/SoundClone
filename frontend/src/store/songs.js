@@ -131,7 +131,11 @@ export const removeSong = (song) => async dispatch => {
   throw response;
 }
 
-const initialState = {};
+const initialState = {
+  songs: {
+    mySongs: {}
+  }
+};
 
 const songReducer = (state = initialState, action) => {
   switch (action.type) {
