@@ -38,9 +38,11 @@ function SongPage() {
         <div className='container'>
           <h1 className='header'>{song.title}</h1>
           <h2 className='header'>{`Song by - ${song.User.username}`}</h2>
-          <img src={`../${song.previewImage}`} alt='Song Cover' id='image' />
+          <img src={song.previewImage} alt='Song Cover' id='image' />
+          {/* <img src={`../${song.previewImage}`} alt='Song Cover' id='image' /> */}
           <p className='desc'>{song.description}</p>
-          <div id='audio'><audio controls controlsList='nodownload' src={`../${song.url}`} id='player' /></div>
+          <div id='audio'><audio controls controlsList='nodownload' src={song.url} id='player' /></div>
+          {/* <div id='audio'><audio controls controlsList='nodownload' src={`../${song.url}`} id='player' /></div> */}
           {user.id === song.User.id && (
             <span className='actions'>
               <EditSongModal dispatch={dispatch} songId={songId} setIsEdited={setIsEdited} />

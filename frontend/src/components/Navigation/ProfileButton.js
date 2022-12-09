@@ -8,9 +8,10 @@ function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
   const [isUser, setIsUser] = useState(true);
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+  const openMenu = (e) => {
+    e.stopPropagation();
+    // if (showMenu) return;
+    setShowMenu(!showMenu);
   };
 
   useEffect(() => {

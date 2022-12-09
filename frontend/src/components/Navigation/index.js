@@ -33,7 +33,7 @@ function Navigation({ isLoaded }) {
       <nav>
         <NavLink exact to="/" >
           <button id='home'>
-            <div className='font'><i className="fa-brands fa-soundcloud"></i>SoundCloud</div>
+            <div className='font'><i className="fa-brands fa-soundcloud"></i>SoundClone</div>
           </button>
         </NavLink>
         {isLoaded && sessionLinks}
