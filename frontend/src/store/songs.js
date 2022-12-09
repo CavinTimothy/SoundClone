@@ -42,29 +42,22 @@ const deleteSong = (songId) => {
 };
 
 export const newSong = (payload) => async dispatch => {
-  // console.log("PAYLOAD: ", payload);
-  // return
+  const { title, description, url, previewImage } = payload;
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("description", description);
+  formData.append("previewImage", previewImage);
+  formData.append("url", url);
 
-  // const { title, description, url, previewImage } = payload;
-  // const formData = new FormData();
-  // formData.append("title", title);
-  // formData.append("description", description);
-  // formData.append("previewImage", previewImage);
-  // formData.append("url", url);
-
-  // console.log("url", url);
-  // console.log("previewImage", previewImage)
-  // console.log("FORMDATA: ", formData);
-
-  // const response = await csrfFetch('/api/songs', {
-  //   method: 'POST',
-  //   headers: { "Content-Type": "multipart/form-data" },
-  //   body: formData,
-  // });
   const response = await csrfFetch('/api/songs', {
     method: 'POST',
-    body: JSON.stringify(payload)
+    headers: { "Content-Type": "multipart/form-data" },
+    body: formData,
   });
+  // const response = await csrfFetch('/api/songs', {
+  //   method: 'POST',
+  //   body: JSON.stringify(payload)
+  // });
   if (response.ok) {
     const newSong = await response.json();
     dispatch(setSong(newSong));
@@ -92,11 +85,24 @@ export const getAllSongs = () => async dispatch => {
   }
 }
 
-export const editSong = (info, songId) => async dispatch => {
+export const editSong = (payload, songId) => async dispatch => {
+  // const response = await csrfFetch(`/api/songs/${songId}`, {
+  //   method: 'PUT',
+  //   body: JSON.stringify(info)
+  // });
+  const { title, description, url, previewImage } = payload;
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("description", description);
+  formData.append("previewImage", previewImage);
+  formData.append("url", url);
+
   const response = await csrfFetch(`/api/songs/${songId}`, {
     method: 'PUT',
-    body: JSON.stringify(info)
+    headers: { "Content-Type": "multipart/form-data" },
+    body: formData,
   });
+
   if (response.ok) {
     const updatedSong = await csrfFetch(`/api/songs/${songId}`).then(res => res.json());
     dispatch(setSong(updatedSong));

@@ -11,8 +11,8 @@ function Upload() {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [url, setUrl] = useState('');
-  const [previewImage, setPreviewImage] = useState('');
+  const [url, setUrl] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
   const [errors, setErrors] = useState([]);
 
   if (userSongs.length > initLen) {
@@ -23,11 +23,7 @@ function Upload() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    // const formData = new FormData();
-    // formData.append("title", title);
-    // formData.append("description", description);
-    // formData.append("previewImage", previewImage);
-    // formData.append("url", url);
+
     const payload = {
       title,
       description,
@@ -35,10 +31,16 @@ function Upload() {
       previewImage
     }
 
-    return dispatch(songActions.newSong(payload)).catch(async (res) => {
-      const data = await res.json();
-      if (data && data.errors) setErrors(data.errors);
-    });
+    return dispatch(songActions.newSong(payload)).then(() => {
+      setTitle('');
+      setDescription('');
+      setUrl(null);
+      setPreviewImage(null);
+    })
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
   }
 
   return (
@@ -64,8 +66,8 @@ function Upload() {
         <label className='uploadItem uploadFile'>
           Song Image
           <input
-            // type="file"
-            type="text"
+            type="file"
+            // type="text"
             value={previewImage}
             onChange={(e) => setPreviewImage(e.target.value)}
             required
@@ -74,9 +76,8 @@ function Upload() {
         <label className='uploadItem uploadFile'>
           Song URL
           <input
-            // type="file"
-            type="text"
-            name="url"
+            type="file"
+            // type="text"
             id="url"
             value={url}
             onChange={(e) => setUrl(e.target.value)}

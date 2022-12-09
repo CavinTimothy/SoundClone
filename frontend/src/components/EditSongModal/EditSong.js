@@ -18,7 +18,7 @@ function EditSong({ reRender }) {
       title,
       description,
       url,
-      imageUrl: previewImage
+      previewImage
     }
 
     // dispatch(songActions.editSong(payload, songId))
@@ -55,7 +55,8 @@ function EditSong({ reRender }) {
       <label>
         Song URL
         <input
-          type="text"
+          type="file"
+          // type="text"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           required
@@ -64,7 +65,8 @@ function EditSong({ reRender }) {
       <label>
         Song Image
         <input
-          type="text"
+          type="file"
+          // type="text"
           value={previewImage}
           onChange={(e) => setPreviewImage(e.target.value)}
           required
