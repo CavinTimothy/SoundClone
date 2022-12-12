@@ -1,18 +1,8 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
-import * as songActions from '../../store/songs';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-
-function EditSong({ reRender }) {
-  const dispatch = useDispatch();
-  const { songId } = useParams();
-=======
 import { useSelector } from 'react-redux';
 // import { editSong } from '../../store/songs';
 
 function EditSong({ reRender }) {
->>>>>>> dev
   const song = useSelector(state => state.songs.curr);
 
   const [title, setTitle] = useState(song.title);
@@ -39,7 +29,6 @@ function EditSong({ reRender }) {
     //     else reRender();
     //   });
     reRender(payload);
->>>>>>> dev
   }
 
   return (
