@@ -8,9 +8,10 @@ function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
   const [isUser, setIsUser] = useState(true);
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+  const openMenu = (e) => {
+    e.stopPropagation();
+    // if (showMenu) return;
+    setShowMenu(!showMenu);
   };
 
   useEffect(() => {
@@ -35,15 +36,15 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button className='nav-button' id="pf" onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
+          <li>{`User: ${user.username}`}</li>
+          <li>{`Email: ${user.email}`}</li>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <button className="logoutButton" onClick={logout}>Log Out</button>
           </li>
         </ul>
       )}

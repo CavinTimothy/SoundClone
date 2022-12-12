@@ -19,14 +19,14 @@ const userSongs = [
         songs: [
           {
             title: 'Helmet',
-            url: 'songs/Helmet.mp3',
-            previewImage: 'images/Helmet.jpeg',
+            url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Helmet.mp3',
+            previewImage: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Helmet.jpeg',
             description: '#R&B/Soul'
           },
           {
             title: 'Bad Habit',
-            url: 'songs/Bad-Habit.mp3',
-            previewImage: 'images/Bad-Habits.jpeg',
+            url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Bad-Habit.mp3',
+            previewImage: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Bad-Habits.jpeg',
             description: '#R&B/Soul'
           }
         ]
@@ -43,17 +43,17 @@ const userSongs = [
       {
         albumTitle: 'The Now Now',
         description: '#Alternative',
-        image: 'images/The-Now-Now.jpeg',
+        image: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/The-Now-Now.jpeg',
         songs: [
           {
             title: 'Humility',
-            url: 'songs/Humility.mp3',
+            url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Humility.mp3',
             previewImage: null,
             description: '#Alternative'
           },
           {
             title: 'Tranz',
-            url: 'songs/Tranz.mp3',
+            url: 'https://soundcloneupload.s3.us-west-2.amazonaws.com/Tranz.mp3',
             previewImage: null,
             description: '#Alternative'
           }

@@ -27,11 +27,11 @@ function SignupForm() {
 
   return (
     <form onSubmit={handleSubmit} className='container'>
-      <ul>
+      <div class='err'>
         {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
+          <p key={idx}>{'*' + error}</p>
         ))}
-      </ul>
+      </div>
       <label className='item'>
         First Name
         <input

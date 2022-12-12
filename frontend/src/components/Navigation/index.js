@@ -14,9 +14,9 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <>
-        <NavLink to='/library'><button>Library</button></NavLink>
+        <NavLink to='/library'><button className='nav-button'>Library</button></NavLink>
+        <NavLink to='/upload'><button className='nav-button'>Upload</button></NavLink>
         <ProfileButton user={sessionUser} />
-        <NavLink to='/upload'><button>Upload</button></NavLink>
       </>
     );
   } else {
@@ -30,10 +30,10 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className='navbar'>
-      <nav>
+      <nav id='nav'>
         <NavLink exact to="/" >
           <button id='home'>
-            <div className='font'><i className="fa-brands fa-soundcloud"></i>SoundCloud</div>
+            <div className='font'><i className="fa-brands fa-soundcloud"></i>SoundClone</div>
           </button>
         </NavLink>
         {isLoaded && sessionLinks}

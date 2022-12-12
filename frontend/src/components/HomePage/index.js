@@ -16,6 +16,12 @@ function HomePage() {
 
   return (
     <main>
+      <div className="home-header">
+        <div className="home-title">
+          <h2>Enjoy Music with <b id="bold">SoundClone</b></h2>
+        </div>
+      </div>
+      <h3 id="home-songs">Today's Picks</h3>
       <ul className='homeUl'>
         {list && list.map(({ title, previewImage, description }, idx) => (
           <li key={idx} className='homeLi'>

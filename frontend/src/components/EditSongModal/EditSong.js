@@ -9,6 +9,7 @@ function EditSong({ reRender }) {
   const { songId } = useParams();
 =======
 import { useSelector } from 'react-redux';
+// import { editSong } from '../../store/songs';
 
 function EditSong({ reRender }) {
 >>>>>>> dev
@@ -19,11 +20,11 @@ function EditSong({ reRender }) {
   const [url, setUrl] = useState(song.url);
   const [previewImage, setPreviewImage] = useState(song.previewImage);
 
-  // const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setErrors([]);
+    setErrors([]);
     const payload = {
       title,
       description,
@@ -31,28 +32,23 @@ function EditSong({ reRender }) {
       imageUrl: previewImage
     }
 
-<<<<<<< HEAD
-    dispatch(songActions.editSong(payload, songId))
-=======
-    // dispatch(songActions.editSong(payload, songId))
->>>>>>> dev
-    // .catch(async (res) => {
-    //   const data = await res.json();
-    //   if (data && data.errors) setErrors(data.errors);
-    // });
-
-<<<<<<< HEAD
-    reRender();
-=======
+    // dispatch(editSong(payload, songId))
+    //   .catch(async (res) => {
+    //     const data = await res.json();
+    //     if (data && data.errors) setErrors(data.errors);
+    //     else reRender();
+    //   });
     reRender(payload);
 >>>>>>> dev
   }
 
   return (
     <form onSubmit={handleSubmit} noValidate>
-      {/* <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul> */}
+      <div class='err'>
+        {errors.map((error, idx) => (
+          <p key={idx}>{'*' + error}</p>
+        ))}
+      </div>
       <label>
         Title
         <input
@@ -88,7 +84,7 @@ function EditSong({ reRender }) {
           required
         />
       </label>
-      <button type='submit'>Save</button>
+      <button type='submit' className='editButton'>Save</button>
     </form>
   );
 }

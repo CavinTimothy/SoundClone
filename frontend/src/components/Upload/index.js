@@ -28,11 +28,7 @@ function Upload() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    // const formData = new FormData();
-    // formData.append("title", title);
-    // formData.append("description", description);
-    // formData.append("previewImage", previewImage);
-    // formData.append("url", url);
+
     const payload = {
       title,
       description,
@@ -49,6 +45,11 @@ function Upload() {
   return (
     <div className='formContainer'>
       <form onSubmit={handleSubmit} noValidate className='uploadForm'>Upload a new song
+        <div>
+          <ul>
+            {errors.map((error, idx) => <li id="err" key={idx}>{error}</li>)}
+          </ul>
+        </div>
         <label className='uploadItem'>
           Title
           <input
@@ -69,7 +70,6 @@ function Upload() {
         <label className='uploadItem uploadFile'>
           Song Image
           <input
-            // type="file"
             type="text"
             value={previewImage}
             onChange={(e) => setPreviewImage(e.target.value)}
@@ -86,7 +86,6 @@ function Upload() {
         <label className='uploadItem uploadFile'>
           Song URL
           <input
-            // type="file"
             type="text"
 >>>>>>> dev
             name="url"
@@ -96,7 +95,7 @@ function Upload() {
             required
           />
         </label>
-        <button type='submit'>Upload</button>
+        <button type='submit' id='upload'>Upload</button>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>

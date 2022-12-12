@@ -1,4 +1,5 @@
 .formContainer {
+  padding-top: 100px;
   /* width: 60%;
   height: 70%; */
   align-content: center;
@@ -13,5 +14,17 @@
 }
 
 .uploadItem {
-  margin: 2px;
+  margin: 5px;
+}
+
+#upload {
+  height: 25px;
+  border-style: hidden;
+  background-color: #f70;
+  color: #fff;
+}
+
+#err {
+  color: red;
+  align-self: center;
 }
