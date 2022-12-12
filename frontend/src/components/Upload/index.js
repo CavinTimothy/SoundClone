@@ -6,13 +6,8 @@ import './Upload.css'
 
 function Upload() {
   const dispatch = useDispatch();
-<<<<<<< HEAD
-  const userSongs = useSelector(state => Object.values(state.songs))
-  const [initLen] = useState(Object.values(userSongs).length)
-=======
   const userSongs = useSelector(state => Object.values(state.songs.mySongs));
   const [initLen] = useState(Object.values(userSongs).length);
->>>>>>> dev
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -76,18 +71,10 @@ function Upload() {
             required
           />
         </label>
-<<<<<<< HEAD
-        <label className='uploadItem uploadFile' for="url">
-          Song URL
-          <input
-            type="file"
-            // type="text"
-=======
         <label className='uploadItem uploadFile'>
           Song URL
           <input
             type="text"
->>>>>>> dev
             name="url"
             id="url"
             value={url}

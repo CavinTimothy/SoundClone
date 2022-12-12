@@ -1,32 +1,17 @@
 import React, { useEffect, useState } from 'react';
-<<<<<<< HEAD
-import { useDispatch, useSelector } from 'react-redux';
-=======
 import { useDispatch } from 'react-redux';
->>>>>>> dev
 import { useParams } from 'react-router-dom';
 import { getComments, newComment, removeComment } from '../../store/comments';
 import './Comments.css';
 
-<<<<<<< HEAD
-function Comments({ user }) {
-  const dispatch = useDispatch();
-  const { songId } = useParams();
-  const comments = useSelector(state => Object.values(state.comments));
-=======
 function Comments({ user, comments }) {
   const dispatch = useDispatch();
   const { songId } = useParams();
->>>>>>> dev
   const [comment, setComment] = useState('');
 
   useEffect(() => {
     dispatch(getComments(songId));
-<<<<<<< HEAD
-  }, [dispatch]);
-=======
   }, [dispatch, songId]);
->>>>>>> dev
 
   const handleDelete = (e, idx) => {
     e.preventDefault();
@@ -47,11 +32,7 @@ function Comments({ user, comments }) {
             <input
               type='text'
               value={comment}
-<<<<<<< HEAD
-              placeholder='Write a comment'
-=======
               placeholder={'Write a comment'}
->>>>>>> dev
               onChange={(e) => setComment(e.target.value)}
               required
             />

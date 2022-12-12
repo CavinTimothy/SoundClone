@@ -15,7 +15,6 @@ function EditSongModal({ dispatch, songId, setIsEdited }) {
     setShowModal(false);
     dispatch(editSong(payload, songId));
     setIsEdited(true);
->>>>>>> dev
   }
 
   return (
