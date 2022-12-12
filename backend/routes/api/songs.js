@@ -99,35 +99,10 @@ router.get('/:songId', async (req, res) => {
 });
 
 // ***CREATE SONG (Feature 1)***
-// router.post('/', requireAuth, async (req, res, next) => {
-router.post('/', [requireAuth, upload.fields([{ name: 'url', maxCount: 1 }, { name: 'previewImage', maxCount: 1 }])], async (req, res, next) => {
+router.post('/', requireAuth, async (req, res, next) => {
   try {
     const { user } = req;
-    // const { title, description, url, previewImage, albumId } = req.body;
     const { title, description, albumId, url, previewImage } = req.body;
-    // const previewImage = req.files
-    // const url = req.files
-    // console.log("HEADER: ", req.headers);
-    // if (req.file) {
-    //   console.log("REQ.FILE:");
-    //   console.log(req.file);
-    //   throw new Error(err)
-    // }
-    // if (req.files) {
-    //   console.log("REQ.FILES:");
-    //   console.log(req.files);
-    //   console.log("REQ.BODY");
-    //   console.log(req.body);
-    //   throw new Error(err)
-    // } else {
-    //   console.log("REQ.BODY");
-    //   console.log(req.body);
-
-    //   console.log("REQ.FILE:");
-    //   console.log(req.files);
-    //   throw new Error(err)
-    // }
-    // console.log("HEADER ", req.headers);
 
     const newSong = await Song.create({
       title,

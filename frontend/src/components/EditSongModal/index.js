@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal } from '../../context/Modal';
-import { editSong } from '../../store/songs';
+import { editSong, getOneSong } from '../../store/songs';
 import EditSong from './EditSong'
 import './EditSong.css';
 
 function EditSongModal({ dispatch, songId, setIsEdited }) {
   const [showModal, setShowModal] = useState();
+
+  useEffect(() => {
+    dispatch(getOneSong(songId))
+  }, [dispatch, songId])
 
   const reRender = (payload) => {
     setShowModal(false);
@@ -15,7 +19,7 @@ function EditSongModal({ dispatch, songId, setIsEdited }) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)} id='editButton'>Edit</button>
+      <button onClick={() => setShowModal(true)} className='editButton'>Edit</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditSong reRender={reRender} />

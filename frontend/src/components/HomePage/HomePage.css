@@ -71,3 +71,28 @@ h3 {
   font-weight: normal;
   margin: 5px 5px;
 }
+
+.home-header {
+  height: 400px;
+  background-image: url(https://soundcloneupload.s3.us-west-2.amazonaws.com/sc_landing_header.jpg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-title {
+  color: #fff;
+  text-align: center;
+  width: 30%;
+  font-size: xx-large;
+}
+
+#bold {
+  color: #f70;
+}
+
+#home-songs {
+  padding-top: 10px;
+  font-size: x-large;
+  text-align: center;
+}

@@ -5,6 +5,10 @@
   display: flex;
 }
 
+#nav {
+  width: 100%;
+}
+
 #home {
   height: 100%;
   width: auto;
@@ -24,10 +28,29 @@
   font-size: x-large;
 }
 
-.navButton {
-  border-top: hidden;
-  border-bottom: hidden;
-  border-color: rgba(56, 56, 56, 0.8);
-  color: #fff;
+.nav-button {
+  border: hidden;
+  /* border-bottom: hidden;
+  border-color: rgba(56, 56, 56, 0.8); */
+  color: #ccc;
   background-color: #333;
+  font-size: large;
+}
+
+.nav-button:hover {
+  color: #fff;
+}
+
+.profile-dropdown {
+  list-style: none;
+  background-color: #333;
+  color: #ccc;
+  margin: 0px;
+  padding: 5px;
+}
+
+.logoutButton {
+  border-style: hidden;
+  background-color: #f70;
+  color: #fff;
 }

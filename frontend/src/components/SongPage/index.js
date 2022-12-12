@@ -19,7 +19,7 @@ function SongPage() {
 
   useEffect(() => {
     dispatch(songActions.getOneSong(songId));
-    dispatch(songActions.loadList());
+    // dispatch(songActions.loadList());
     dispatch(getComments(songId));
     isEdited && setIsEdited(false);
   }, [dispatch, songId, isEdited])

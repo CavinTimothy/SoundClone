@@ -42,25 +42,6 @@ const deleteSong = (songId) => {
 };
 
 export const newSong = (payload) => async dispatch => {
-  // console.log("PAYLOAD: ", payload);
-  // return
-
-  // const { title, description, url, previewImage } = payload;
-  // const formData = new FormData();
-  // formData.append("title", title);
-  // formData.append("description", description);
-  // formData.append("previewImage", previewImage);
-  // formData.append("url", url);
-
-  // console.log("url", url);
-  // console.log("previewImage", previewImage)
-  // console.log("FORMDATA: ", formData);
-
-  // const response = await csrfFetch('/api/songs', {
-  //   method: 'POST',
-  //   headers: { "Content-Type": "multipart/form-data" },
-  //   body: formData,
-  // });
   const response = await csrfFetch('/api/songs', {
     method: 'POST',
     body: JSON.stringify(payload)
