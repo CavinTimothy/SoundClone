@@ -2,18 +2,7 @@
 const express = require('express')
 const { requireAuth } = require('../../utils/auth');
 const { Op } = require('sequelize');
-const multer = require('multer');
-// const upload = multer({ dest: 'uploads/' });
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/')
-  },
-  filename: function (req, file, cb) {
-    cb(null, 'bat' + path.extname(file.originalname))
-  }
-});
-const upload = multer({ storage: storage });
-// const uploadImage = multer({ dest: 'images/'})
+
 const { User, Song, Album, Playlist, Comment } = require('../../db/models');
 
 const router = express.Router();
