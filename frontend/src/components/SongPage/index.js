@@ -68,7 +68,7 @@ function SongPage() {
                 <button onClick={handleDelete} className='delete'>Delete</button>
               </span>
             )}
-            {comments > 0 && (<Comments user={user} comments={comments} />)}
+            {comments && (<Comments user={user} comments={comments} />)}
           </div>
         )}
       </>
