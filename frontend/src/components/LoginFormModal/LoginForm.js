@@ -21,7 +21,7 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} className='container'>
-      <div class='err'>
+      <div className='err'>
         {errors.map((error, idx) => (
           <p key={idx}>{'*' + error}</p>
         ))}

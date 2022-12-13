@@ -19,7 +19,7 @@ function SongPage() {
 
   useEffect(() => {
     dispatch(songActions.getOneSong(songId));
-    // dispatch(songActions.loadList());
+    dispatch(songActions.loadList());
     dispatch(getComments(songId));
     isEdited && setIsEdited(false);
   }, [dispatch, songId, isEdited])
@@ -32,28 +32,48 @@ function SongPage() {
     setIsDeleted(true)
   }
 
-  return (
-    <>
-      {song && (
-        <div className='container'>
-          <h1 className='header'>{song.title}</h1>
-          <h2 className='header'>{`Song by - ${song.User.username}`}</h2>
-          <img src={song.previewImage} alt='Song Cover' id='image' />
-          {/* <img src={`../${song.previewImage}`} alt='Song Cover' id='image' /> */}
-          <p className='desc'>{song.description}</p>
-          <div id='audio'><audio controls controlsList='nodownload' src={song.url} id='player' /></div>
-          {/* <div id='audio'><audio controls controlsList='nodownload' src={`../${song.url}`} id='player' /></div> */}
-          {user.id === song.User.id && (
-            <span className='actions'>
-              <EditSongModal dispatch={dispatch} songId={songId} setIsEdited={setIsEdited} />
-              <button onClick={handleDelete} className='delete'>Delete</button>
-            </span>
-          )}
-          <Comments user={user} comments={comments} />
-        </div>
-      )}
-    </>
-  );
+  if (!user || user === 'undefined') {
+    return (
+      <>
+        {song && (
+          <div className='container'>
+            <h1 className='header'>{song.title}</h1>
+            <h2 className='header'>{`Song by - ${song.User.username}`}</h2>
+            <img src={song.previewImage} alt='Song Cover' id='image' />
+            {/* <img src={`../${song.previewImage}`} alt='Song Cover' id='image' /> */}
+            <p className='desc'>{song.description}</p>
+            <div id='audio'><audio controls controlsList='nodownload' src={song.url} id='player' /></div>
+            {/* <div id='audio'><audio controls controlsList='nodownload' src={`../${song.url}`} id='player' /></div> */}
+            <Comments user={user} comments={comments} />
+          </div>
+        )}
+      </>
+    );
+  }
+  else {
+    return (
+      <>
+        {song && (
+          <div className='container'>
+            <h1 className='header'>{song.title}</h1>
+            <h2 className='header'>{`Song by - ${song.User.username}`}</h2>
+            <img src={song.previewImage} alt='Song Cover' id='image' />
+            {/* <img src={`../${song.previewImage}`} alt='Song Cover' id='image' /> */}
+            <p className='desc'>{song.description}</p>
+            <div id='audio'><audio controls controlsList='nodownload' src={song.url} id='player' /></div>
+            {/* <div id='audio'><audio controls controlsList='nodownload' src={`../${song.url}`} id='player' /></div> */}
+            {user.id === song.User.id && (
+              <span className='actions'>
+                <EditSongModal dispatch={dispatch} songId={songId} setIsEdited={setIsEdited} />
+                <button onClick={handleDelete} className='delete'>Delete</button>
+              </span>
+            )}
+            <Comments user={user} comments={comments} />
+          </div>
+        )}
+      </>
+    );
+  }
 }
 
 export default SongPage
