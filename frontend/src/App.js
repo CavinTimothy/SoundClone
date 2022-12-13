@@ -15,9 +15,9 @@ function App() {
   const user = useSelector(state => state.session.user);
 
   useEffect(() => {
-    // if (user) {
-    // }
-    dispatch(songActions.loadList());
+    if (user) {
+      dispatch(songActions.loadList());
+    }
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     dispatch(songActions.getAllSongs());
   }, [dispatch]);

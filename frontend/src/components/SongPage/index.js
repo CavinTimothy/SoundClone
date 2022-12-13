@@ -19,7 +19,7 @@ function SongPage() {
 
   useEffect(() => {
     dispatch(songActions.getOneSong(songId));
-    dispatch(songActions.loadList());
+    if (user) dispatch(songActions.loadList());
     dispatch(getComments(songId));
     isEdited && setIsEdited(false);
   }, [dispatch, songId, isEdited])
@@ -44,7 +44,7 @@ function SongPage() {
             <p className='desc'>{song.description}</p>
             <div id='audio'><audio controls controlsList='nodownload' src={song.url} id='player' /></div>
             {/* <div id='audio'><audio controls controlsList='nodownload' src={`../${song.url}`} id='player' /></div> */}
-            <Comments user={user} comments={comments} />
+            {comments > 0 && (<Comments user={user} comments={comments} />)}
           </div>
         )}
       </>
@@ -68,7 +68,7 @@ function SongPage() {
                 <button onClick={handleDelete} className='delete'>Delete</button>
               </span>
             )}
-            <Comments user={user} comments={comments} />
+            {comments > 0 && (<Comments user={user} comments={comments} />)}
           </div>
         )}
       </>
