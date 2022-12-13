@@ -26,7 +26,7 @@ module.exports = {
         references: { model: 'Albums' }
       },
       title: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING,
         allowNull: false
       },
       description: {
