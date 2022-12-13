@@ -1,6 +1,6 @@
 # `SoundCloud Clone`
 
-# SoundClone Landing Page
+## SoundClone Landing Page
 
 ![Visual of Landing Page](./Landing.png)
 
