@@ -1,5 +1,9 @@
 # `SoundCloud Clone`
 
+# SoundClone Landing Page
+
+![Visual of Landing Page](./Landing.png)
+
 ## Database Schema Design
 
 ![Visual of Database Schema](./Database-Schema.png)
