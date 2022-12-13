@@ -2,6 +2,9 @@
 node_modules
 /.pnp
 .pnp.js
+package-lock.json
+frontend/package-lock.json
+backend/package-lock.json
 
 # testing
 /coverage
