@@ -4,29 +4,28 @@ a:visited {
   color: rgb(90, 90, 90);
 }
 
-.homeParent {
-  display: grid;
-  grid-template-rows: 50px auto;
-  padding: 10px;
-}
-
 .homeUl {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  justify-content: flex-start;
+  justify-content: center;
   list-style-type: none;
+  margin: auto;
+  padding: 0px;
+  max-width: 1240px;
+  background-color: #fff;
 }
 
 .homeLi {
   padding: 5px;
-  max-width: 200px;
+  /* padding-top: 0px; */
+  max-width: 201px;
   height: fit-content;
   border-radius: 3%;
 }
 
 .homeLi.homeLi:hover {
-  background-color: rgb(213, 213, 213);
+  background-color: #bbb;
   /* background-color: rgba(255, 119, 0, 0.522); */
 }
 
@@ -34,12 +33,15 @@ a:visited {
   border-radius: 2%;
   border-style: solid;
   border-width: 2px;
-  border-color: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+  align-self: auto;
+  margin: 1px auto;
 }
 
 .homeP {
   display: flex;
   justify-content: space-between;
+  margin: 5px 0px;
 }
 
 #play {
@@ -66,24 +68,25 @@ a:visited {
   border-style: hidden;
 }
 
-h3 {
-  font-size: auto;
-  font-weight: normal;
-  margin: 5px 5px;
+.soti {
+  margin: 3px;
 }
 
 .home-header {
+  max-width: 1240px;
   height: 400px;
   background-image: url(https://soundcloneupload.s3.us-west-2.amazonaws.com/sc_landing_header.jpg);
   display: flex;
   justify-content: center;
   align-items: center;
+  align-content: center;
+  margin: auto;
 }
 
 .home-title {
-  color: #fff;
+  color: #ccc;
   text-align: center;
-  width: 30%;
+  width: 400px;
   font-size: xx-large;
 }
 
@@ -95,4 +98,8 @@ h3 {
   padding-top: 10px;
   font-size: x-large;
   text-align: center;
+  margin: auto;
+  max-width: 1240px;
+  background-color: #fff;
+  border-top: thick solid #f70;
 }

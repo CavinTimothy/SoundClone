@@ -69,7 +69,7 @@ export const getAllSongs = () => async dispatch => {
   if (response.ok) {
     let allSongs = await response.json();
     dispatch(getAll(shuffle(allSongs)));
-    return allSongs;
+    // return allSongs;
   }
 }
 
@@ -86,11 +86,11 @@ export const editSong = (info, songId) => async dispatch => {
 }
 
 export const loadList = () => async dispatch => {
-  const response = await csrfFetch('/api/songs/current');
+  const response = await csrfFetch(`/api/songs/current`);
   if (response.ok) {
-    const list = await response.json();
-    dispatch(loadSongList(list))
-    return list;
+    let list = await response.json();
+    dispatch(loadSongList(list));
+    // return list;
   }
 }
 
@@ -106,24 +106,33 @@ export const removeSong = (song) => async dispatch => {
   throw response;
 }
 
-const initialState = {};
+const initialState = {
+  allSongs: null,
+  mySongs: null,
+  curr: null
+};
 
 const songReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SONG:
       state.mySongs[action.song.id] = action.song
+      state.allSongs[action.song.id] = action.song
       return { ...state };
     case GET_ONE:
       return { ...state, curr: action.song };
     case GET_ALL:
+      // const allSongs = {};
+      // action.all.forEach(song => allSongs[song.id] = song);
       return { ...state, allSongs: action.all };
     case LOAD_LIST:
-      const songList = {}
-      action.list.forEach((song) => { songList[song.id] = song });
-      return { ...state, mySongs: songList };
+      // const mySongs = {};
+      // action.list.forEach(song => mySongs[song.id] = song);
+      return { ...state, mySongs: action.list };
     case DELETE_SONG:
       const newState = { ...state };
-      delete newState[action.songId]
+      // delete newState.mySongs[action.songId];
+      // delete newState.allSongs[action.songId];
+      newState.curr = null;
       return newState;
     default:
       return state;

@@ -1,18 +1,11 @@
-// import React, { useEffect } from "react";
 import React from "react";
-// import { useDispatch, useSelector } from "react-redux";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-// import { getAllSongs } from "../../store/songs";
+
 import './HomePage.css';
 
 function HomePage() {
-  // const dispatch = useDispatch();
-  const list = useSelector((state) => state.songs.allSongs);
-
-  // useEffect(() => {
-  //   dispatch(getAllSongs());
-  // }, [dispatch])
+  const list = useSelector(state => state.songs.allSongs);
 
   return (
     <main>
