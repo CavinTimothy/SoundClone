@@ -1,10 +1,55 @@
 # `SoundCloud Clone`
 
-## Database Schema Design
+## SoundClone Landing Page
 
+### Link Link: https://cavin-timothy-soundclone.onrender.com/
+![Visual of Landing Page](./LandingPage.png)
+
+### Summary:
+This project is a React.js application I wrote to mimic the music-player website SoundCloud.com. This app allows users to:
+* Create secure accounts
+* Upload their own music to the site
+* Listen to other users/artists on the site
+* Interact with other users by leaving comments under songs uploaded to the site
+
+### How to build/run project:
+1. Clone/download the repo/project.
+2. Install the required packages using Node package manager: `npm install`
+3. Run the following build commands if deploying with Render.com:
+* `npm run render-postbuild`
+* `npm run build`
+4. Run theses commands to migrate/seed the database:
+* `npm run sequelize --prefix backend db:migrate`
+* `npm run sequelize --prefix backend db:seed:all`
+5. Once the database is migrated and deployed, the application is ready to use.
+
+### Techs and Languages used:
+* VSCode
+* Node.js
+* React.js
+* JSX
+* HTML
+* CSS
+* PostgresSQL
+* I built my own API specifically for this project (API build details below).
+
+### Features to be added in the future:
+* Add an UPDATE functionality to the comment feature
+* Custom playlist feature
+* User account customization
+
+### Implementation details:
+* Before implementing the react components, I had to consider how the app was going to
+communicate with the backend API. So I planned out where the appropriate thunks were to be dispatched to ensure the app's functionality.
+* A particular challenge I faced frequently throughout this project was the app's styling.
+I spent a considerable amount of time writing, testing, and revising CSS to achieve the app's
+appealing and intuitive user interface.
+* In future projects, I plan to implement SCSS to improve my efficiency with building the UI.
+
+## Database Schema Design
 ![Visual of Database Schema](./Database-Schema.png)
 
-## API Documentation
+## Backend API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
 

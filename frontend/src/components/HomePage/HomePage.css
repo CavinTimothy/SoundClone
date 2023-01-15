@@ -13,35 +13,41 @@ a:visited {
   margin: auto;
   padding: 0px;
   max-width: 1240px;
-  background-color: #fff;
+  background-color: #eee;
 }
 
 .homeLi {
   padding: 5px;
-  /* padding-top: 0px; */
-  max-width: 201px;
+  max-width: 205px;
   height: fit-content;
   border-radius: 3%;
+  border: solid #eee;
 }
 
 .homeLi.homeLi:hover {
-  background-color: #bbb;
-  /* background-color: rgba(255, 119, 0, 0.522); */
+  border: solid #bbb;
+}
+
+.homeItem {
+  width: 205px;
+  /* margin: 2px;
+  padding: 1px; */
 }
 
 .img {
   border-radius: 2%;
   border-style: solid;
-  border-width: 2px;
+  border-width: 1px;
   border-color: rgba(0, 0, 0, 0.2);
-  align-self: auto;
+  align-content: center;
   margin: 1px auto;
 }
 
 .homeP {
   display: flex;
   justify-content: space-between;
-  margin: 5px 0px;
+  margin: 0px;
+  width: 200px;
 }
 
 #play {
@@ -50,7 +56,7 @@ a:visited {
   border-radius: 15%;
   border-color: #ccc;
   border-width: 1px;
-  padding: 6px 6px;
+  padding: 6px;
 }
 
 .fa-circle-play {
@@ -95,7 +101,7 @@ a:visited {
 }
 
 #home-songs {
-  padding-top: 10px;
+  padding: 10px 0px;
   font-size: x-large;
   text-align: center;
   margin: auto;

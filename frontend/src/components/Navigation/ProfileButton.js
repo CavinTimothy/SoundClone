@@ -10,7 +10,6 @@ function ProfileButton({ user }) {
 
   const openMenu = (e) => {
     e.stopPropagation();
-    // if (showMenu) return;
     setShowMenu(!showMenu);
   };
 

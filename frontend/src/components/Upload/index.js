@@ -6,25 +6,23 @@ import './Upload.css'
 
 function Upload() {
   const dispatch = useDispatch();
-  const userSongs = useSelector(state => state.songs.mySongs);
-  // const userSongs = Object.values(list);
-  const [initLen] = useState(userSongs.length);
-  // const [initLen] = useState(Object.values(userSongs).length);
+  const userSong = useSelector(state => state.songs.curr);
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [url, setUrl] = useState('');
   const [previewImage, setPreviewImage] = useState('');
+  const [isUploaded, setIsUploaded] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (userSongs.length > initLen) {
-    const newSong = Object.values(userSongs).pop();
-    return (<Redirect to={`/songs/${newSong.id}`} />);
+  if (isUploaded) {
+    return (<Redirect to={`/songs/${userSong.id}`} />);
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
+    setIsUploaded(false);
 
     const payload = {
       title,
@@ -33,66 +31,66 @@ function Upload() {
       previewImage
     }
 
-    return dispatch(songActions.newSong(payload)).catch(async (res) => {
+    await dispatch(songActions.newSong(payload)).catch(async (res) => {
       const data = await res.json();
       if (data && data.errors) setErrors(data.errors);
     });
+    setIsUploaded(true);
   }
 
   return (
     <>
-      {userSongs && (
-        <div className='formContainer'>
-          <form onSubmit={handleSubmit} noValidate className='uploadForm'>Upload a new song
-            <div>
-              <ul>
-                {errors.map((error, idx) => <li id="err" key={idx}>{error}</li>)}
-              </ul>
-            </div>
-            <label className='uploadItem'>
-              Title
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
-            </label>
-            <label className='uploadItem'>
-              Description
-              <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
-              />
-            </label>
-            <label className='uploadItem uploadFile'>
-              Song Image
-              <input
-                type="text"
-                value={previewImage}
-                onChange={(e) => setPreviewImage(e.target.value)}
-                required
-              />
-            </label>
-            <label className='uploadItem uploadFile'>
-              Song URL
-              <input
-                type="text"
-                name="url"
-                id="url"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                required
-              />
-            </label>
-            <button type='submit' id='upload'>Upload</button>
+      <div className='formContainer'>
+        <form onSubmit={handleSubmit} className='uploadForm'>
+          <h3 id='upload-title'>Upload a new song</h3>
+          <div>
             <ul>
-              {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+              {errors.map((error, idx) => <li id="err" key={idx}>{error}</li>)}
             </ul>
-          </form>
-        </div>
-      )}
+          </div>
+          <label className='uploadItem'>
+            Title
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+          </label>
+          <label className='uploadItem'>
+            Description
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+          </label>
+          <label className='uploadItem uploadFile'>
+            Song Image
+            <input
+              type="text"
+              value={previewImage}
+              onChange={(e) => setPreviewImage(e.target.value)}
+              required
+            />
+          </label>
+          <label className='uploadItem uploadFile'>
+            Song URL
+            <input
+              type="text"
+              name="url"
+              id="url"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              required
+            />
+          </label>
+          <button type='submit' id='upload'>Upload</button>
+          <ul>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
+        </form>
+      </div>
     </>
   );
 }

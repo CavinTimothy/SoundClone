@@ -1,20 +1,30 @@
 .formContainer {
-  padding-top: 100px;
-  /* width: 60%;
-  height: 70%; */
-  align-content: center;
+  max-width: 1240px;
+  height: 390px;
+  /* padding-top: 60px; */
+  /* align-content: center; */
   margin: auto;
+  display: flex;
+  background-image: url(https://soundcloneupload.s3.us-west-2.amazonaws.com/sc_landing_header.jpg);
 }
 
 .uploadForm {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: space-between; */
+  /* align-items: space-between; */
+  margin: auto;
+  color: #fff;
 }
 
 .uploadItem {
-  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0px;
+}
+
+#upload-title {
+  text-align: center;
 }
 
 #upload {

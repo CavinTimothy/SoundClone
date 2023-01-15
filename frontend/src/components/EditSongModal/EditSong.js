@@ -32,7 +32,7 @@ function EditSong({ reRender }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
+    <form onSubmit={handleSubmit} id='edit-modal'>
       <div class='err'>
         {errors.map((error, idx) => (
           <p key={idx}>{'*' + error}</p>

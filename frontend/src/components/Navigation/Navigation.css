@@ -71,10 +71,11 @@
   background-color: #333;
   color: #ccc;
   margin: 0px;
-  padding: 5px;
+  padding: 0px 5px;
   position: relative;
   top: -5px;
   border-top: thin solid rgba(0, 0, 0, 0.5);
+  border-bottom: thin solid rgba(0, 0, 0, 0.5);
 }
 
 .logoutButton {

@@ -128,7 +128,28 @@ router.post('/', requireAuth, async (req, res, next) => {
     }
     await user.addSong(newSong);
 
-    res.json(await Song.findByPk(newSong.id));
+    res.json(await Song.findOne({
+      where: {
+        id: newSong.id
+      },
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: [
+              'firstName', 'lastName', 'email',
+              'hashedPassword', 'createdAt', 'updatedAt'
+            ]
+          }
+        },
+        {
+          model: Album,
+          attributes: {
+            exclude: ['userId', 'description', 'createdAt', 'updatedAt']
+          }
+        }
+      ]
+    }));
   } catch (err) {
     res.status(404).json({
       'message': 'Album couldn\'t be found',

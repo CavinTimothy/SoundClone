@@ -4,11 +4,15 @@
 
 .commentUl {
   list-style-type: none;
+  max-width: 1240px;
+  padding: 0px 50px;
+  margin: 5px auto;
 }
 
 .commentItem {
-  border-bottom-style: groove;
+  border-bottom: groove;
   padding: 1%;
+  background-color: #fff;
 }
 
 .delete {
@@ -20,4 +24,12 @@
 #comment {
   color: gray;
   font-size: small;
+}
+
+#input {
+  margin-bottom: 5px;
+}
+
+h5 {
+  margin: 0px;
 }

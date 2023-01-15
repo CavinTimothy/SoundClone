@@ -2,3 +2,10 @@
   background-color: #f70;
   color: #fff;
 }
+
+#edit-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}

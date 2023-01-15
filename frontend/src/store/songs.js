@@ -49,7 +49,8 @@ export const newSong = (payload) => async dispatch => {
   if (response.ok) {
     const newSong = await response.json();
     dispatch(setSong(newSong));
-    return newSong;
+    // console.log('NEWSONG: ', newSong)
+    // return newSong;
   }
 }
 
@@ -107,27 +108,29 @@ export const removeSong = (song) => async dispatch => {
 }
 
 const initialState = {
-  allSongs: null,
-  mySongs: null,
+  allSongs: [],
+  mySongs: [],
   curr: null
 };
 
 const songReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SONG:
-      state.mySongs[action.song.id] = action.song
-      state.allSongs[action.song.id] = action.song
-      return { ...state };
+      state.mySongs.push(action.song);
+      state.allSongs.push(action.song);
+      return { ...state, curr: action.song };
     case GET_ONE:
       return { ...state, curr: action.song };
     case GET_ALL:
       // const allSongs = {};
       // action.all.forEach(song => allSongs[song.id] = song);
-      return { ...state, allSongs: action.all };
+      if (action.all) return { ...state, allSongs: action.all };
+      else return { ...state };
     case LOAD_LIST:
       // const mySongs = {};
       // action.list.forEach(song => mySongs[song.id] = song);
-      return { ...state, mySongs: action.list };
+      if (action.list) return { ...state, mySongs: action.list };
+      else return { ...state };
     case DELETE_SONG:
       const newState = { ...state };
       // delete newState.mySongs[action.songId];

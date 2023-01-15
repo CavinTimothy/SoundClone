@@ -26,7 +26,7 @@ function SignupForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='container'>
+    <form onSubmit={handleSubmit} className='modal-container'>
       <div className='err'>
         {errors.map((error, idx) => (
           <p key={idx}>{'*' + error}</p>
