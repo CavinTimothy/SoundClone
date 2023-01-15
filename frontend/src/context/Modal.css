@@ -30,7 +30,7 @@
   align-self: center;
 }
 
-.container {
+.modal-container {
   display: flex;
   flex-direction: column;
 }

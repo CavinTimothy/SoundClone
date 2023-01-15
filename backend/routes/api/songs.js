@@ -42,13 +42,20 @@ router.get('/', async (req, res) => {
 
 // ***GET ALL USER'S SONGS (Feature 1)***
 router.get('/current', requireAuth, async (req, res) => {
-  const { user } = req;
-  const userSongs = await Song.findAll({
-    where: {
-      userId: user.id
-    }
-  });
-  res.json(userSongs);
+  try {
+    const { user } = req;
+    const userSongs = await Song.findAll({
+      where: {
+        userId: user.id
+      }
+    });
+    res.json(userSongs);
+  } catch (err) {
+    res.status(404).json({
+      'message': 'Songs couldn\'t be found',
+      'statusCode': 404
+    });
+  }
 });
 
 // ***GET DETAILS OF SONG (Feature 1)***
@@ -113,7 +120,28 @@ router.post('/', requireAuth, async (req, res, next) => {
     }
     await user.addSong(newSong);
 
-    res.json(await Song.findByPk(newSong.id));
+    res.json(await Song.findOne({
+      where: {
+        id: newSong.id
+      },
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: [
+              'firstName', 'lastName', 'email',
+              'hashedPassword', 'createdAt', 'updatedAt'
+            ]
+          }
+        },
+        {
+          model: Album,
+          attributes: {
+            exclude: ['userId', 'description', 'createdAt', 'updatedAt']
+          }
+        }
+      ]
+    }));
   } catch (err) {
     res.status(404).json({
       'message': 'Album couldn\'t be found',

@@ -4,10 +4,10 @@ const bcrypt = require("bcryptjs");
 const { User, Song } = require("../models");
 
 const userSongs = {
-  firstName: 'Super',
-  lastName: 'Admin',
-  email: 'superadmin@musician.com',
-  username: 'Various Artists',
+  firstName: 'Demo',
+  lastName: 'User',
+  email: 'demouser@musician.com',
+  username: 'Demo User',
   hashedPassword: bcrypt.hashSync('password'),
   songs: [
     {
@@ -116,6 +116,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await User.destroy({ where: { username: 'Various Artists' } });
+    await User.destroy({ where: { username: 'Demo User' } });
   }
 };

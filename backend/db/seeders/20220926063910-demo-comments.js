@@ -79,7 +79,7 @@ const userComments = [
     ]
   },
   {
-    username: 'Various Artists',
+    username: 'Demo User',
     songs: [
       {
         title: 'Bad Habit',

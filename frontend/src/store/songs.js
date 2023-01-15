@@ -49,7 +49,8 @@ export const newSong = (payload) => async dispatch => {
   if (response.ok) {
     const newSong = await response.json();
     dispatch(setSong(newSong));
-    return newSong;
+    // console.log('NEWSONG: ', newSong)
+    // return newSong;
   }
 }
 
@@ -69,7 +70,7 @@ export const getAllSongs = () => async dispatch => {
   if (response.ok) {
     let allSongs = await response.json();
     dispatch(getAll(shuffle(allSongs)));
-    return allSongs;
+    // return allSongs;
   }
 }
 
@@ -86,11 +87,11 @@ export const editSong = (info, songId) => async dispatch => {
 }
 
 export const loadList = () => async dispatch => {
-  const response = await csrfFetch('/api/songs/current');
+  const response = await csrfFetch(`/api/songs/current`);
   if (response.ok) {
-    const list = await response.json();
-    dispatch(loadSongList(list))
-    return list;
+    let list = await response.json();
+    dispatch(loadSongList(list));
+    // return list;
   }
 }
 
@@ -106,24 +107,35 @@ export const removeSong = (song) => async dispatch => {
   throw response;
 }
 
-const initialState = {};
+const initialState = {
+  allSongs: [],
+  mySongs: [],
+  curr: null
+};
 
 const songReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SONG:
-      state.mySongs[action.song.id] = action.song
-      return { ...state };
+      state.mySongs.push(action.song);
+      state.allSongs.push(action.song);
+      return { ...state, curr: action.song };
     case GET_ONE:
       return { ...state, curr: action.song };
     case GET_ALL:
-      return { ...state, allSongs: action.all };
+      // const allSongs = {};
+      // action.all.forEach(song => allSongs[song.id] = song);
+      if (action.all) return { ...state, allSongs: action.all };
+      else return { ...state };
     case LOAD_LIST:
-      const songList = {}
-      action.list.forEach((song) => { songList[song.id] = song });
-      return { ...state, mySongs: songList };
+      // const mySongs = {};
+      // action.list.forEach(song => mySongs[song.id] = song);
+      if (action.list) return { ...state, mySongs: action.list };
+      else return { ...state };
     case DELETE_SONG:
       const newState = { ...state };
-      delete newState[action.songId]
+      // delete newState.mySongs[action.songId];
+      // delete newState.allSongs[action.songId];
+      newState.curr = null;
       return newState;
     default:
       return state;

@@ -1,7 +1,8 @@
 .navbar {
   background-color: #333;
   height: 45px;
-  width: 100%;
+  width: 1240px;
+  margin: auto;
   display: flex;
 }
 
@@ -26,15 +27,39 @@
   font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
   color: #fff;
   font-size: x-large;
+  position: relative;
+  top: -2px;
 }
 
 .nav-button {
   border: hidden;
-  /* border-bottom: hidden;
-  border-color: rgba(56, 56, 56, 0.8); */
+  border-right: solid;
+  border-color: rgba(204, 204, 204, 0.5);
+  border-width: 1px;
   color: #ccc;
   background-color: #333;
   font-size: large;
+  position: relative;
+  top: -5px;
+  height: 44px;
+}
+
+.demo-button {
+  border: hidden;
+  color: #f70;
+  background-color: #333;
+  font-size: large;
+  position: relative;
+  top: -5px;
+}
+
+.profile-button {
+  border: hidden;
+  color: #ccc;
+  background-color: #333;
+  font-size: large;
+  position: relative;
+  top: -5px;
 }
 
 .nav-button:hover {
@@ -46,7 +71,11 @@
   background-color: #333;
   color: #ccc;
   margin: 0px;
-  padding: 5px;
+  padding: 0px 5px;
+  position: relative;
+  top: -5px;
+  border-top: thin solid rgba(0, 0, 0, 0.5);
+  border-bottom: thin solid rgba(0, 0, 0, 0.5);
 }
 
 .logoutButton {

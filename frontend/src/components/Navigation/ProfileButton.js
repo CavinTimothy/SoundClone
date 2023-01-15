@@ -10,7 +10,6 @@ function ProfileButton({ user }) {
 
   const openMenu = (e) => {
     e.stopPropagation();
-    // if (showMenu) return;
     setShowMenu(!showMenu);
   };
 
@@ -36,7 +35,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button className='nav-button' id="pf" onClick={openMenu}>
+      <button className='profile-button' id="pf" onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       {showMenu && (

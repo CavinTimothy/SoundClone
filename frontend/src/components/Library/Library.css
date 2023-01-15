@@ -7,41 +7,58 @@ a:visited {
 .libParent {
   display: grid;
   grid-template-rows: 50px auto;
-  padding: 10px;
+  /* padding: 10px; */
+  max-width: 1240px;
+  margin: auto;
+  background-color: #eee;
 }
 
 #hOne {
-  margin: 1%;
+  padding: 10px 0px;
+  font-size: x-large;
   text-align: center;
+  margin: 0px;
+  max-width: 1240px;
   color: #f70;
+  background-color: #fff;
+  border-top: thick solid #f70;
 }
 
 .libUl {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  justify-content: flex-start;
+  align-content: flex-start;
+  justify-content: center;
   /* width: fit-content; */
-  padding: 1px 5px;
+  padding: 0px;
   list-style-type: none;
+  max-width: 1240px;
 }
 
 .libLi {
   padding: 5px;
-  max-width: 200px;
+  max-width: 205px;
   height: fit-content;
   border-radius: 3%;
+  border: solid #eee;
+}
+
+.libItem {
+  margin: 3px;
 }
 
 .libLi.libLi:hover {
-  background-color: rgb(213, 213, 213);
+  border: solid #bbb;
 }
 
 .img {
   border-radius: 2%;
   border-style: solid;
   border-width: 1px;
-  border-color: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+  align-content: center;
+  margin: 1px auto;
 }
 
 .libP {
@@ -53,9 +70,9 @@ a:visited {
   background-color: #f70;
   border-style: solid;
   border-radius: 15%;
-  border-color: #ccc;
+  /* border-color: #eee; */
   border-width: 1px;
-  padding: 6px 6px;
+  padding: 6px;
 }
 
 .fa-circle-play {
@@ -69,12 +86,12 @@ a:visited {
 }
 
 #play:hover {
-  background-color: rgb(213, 213, 213);
+  /* background-color: rgba(255, 255, 255, 1); */
+  background-color: #eee;
   border-style: hidden;
 }
 
 h3 {
   font-size: auto;
   font-weight: normal;
-  margin: 5px 5px;
 }
