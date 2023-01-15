@@ -1,13 +1,6 @@
 # `SoundCloud Clone`
 
 ## SoundClone Landing Page
-<<<<<<< HEAD
-
-![Visual of Landing Page](./Landing.png)
-
-## Database Schema Design
-=======
->>>>>>> dev
 
 ### Link Link: https://cavin-timothy-soundclone.onrender.com/
 ![Visual of Landing Page](./LandingPage.png)
