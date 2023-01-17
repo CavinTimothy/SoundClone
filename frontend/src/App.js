@@ -12,12 +12,8 @@ import HomePage from './components/HomePage';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  // const user = useSelector(state => state.session.user);
 
   useEffect(() => {
-    // if (user) {
-    // }
-    // dispatch(songActions.loadList());
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     dispatch(songActions.getAllSongs());
   }, [dispatch]);
@@ -41,6 +37,13 @@ function App() {
           </Route>
         </Switch>
       )}
+      <footer className='footer'>
+        <div className='footerDiv'>
+          <h4 id='about'>About</h4>
+          <p>Author: <a id='github' href='mailto:cavintimotht2014@gmail.com'>Cavin Timothy</a></p>
+          <p><a id='github' href='https://github.com/CavinTimothy'>GitHub</a></p>
+        </div>
+      </footer>
     </>
   );
 }

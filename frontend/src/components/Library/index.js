@@ -22,7 +22,7 @@ function Library() {
           <ul className='libUl'>
             {userSongs.map(({ title, description, previewImage }, idx) => (
               <li key={idx} className='libLi'>
-                <Link to={`/songs/${userSongs[idx].id}`}>
+                <Link className='libSongs' to={`/songs/${userSongs[idx].id}`}>
                   <div className='libItem'>
                     <h3 className='libItem'>{title}</h3>
                     <img src={previewImage} alt='Song cover' className='libItem img' style={{ width: '200px' }} />

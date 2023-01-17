@@ -1,6 +1,24 @@
-/* TODO Add site wide styles */
 body {
   margin: 0%;
   background-color: #eee;
   font-family: sans-serif;
+}
+
+.footer {
+  border-top: thin solid rgba(128, 128, 128, 0.5);
+}
+
+.footerDiv {
+  text-align: center;
+  color: gray;
+}
+
+#about {
+  margin: 10px auto;
+}
+
+#github,
+#github:visited {
+  text-decoration: underline;
+  color: rgb(196, 97, 9);
 }

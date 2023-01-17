@@ -18,7 +18,7 @@ function HomePage() {
       <ul className='homeUl'>
         {list && list.map(({ title, previewImage, description }, idx) => (
           <li key={idx} className='homeLi'>
-            <Link to={`/songs/${list[idx].id}`}>
+            <Link className='homeSong' to={`/songs/${list[idx].id}`}>
               <div className='homeItem'>
                 <h3 className='homeItem soti'>{title}</h3>
                 <img src={previewImage} alt='Song cover' className='homeItem img' style={{ width: '200px' }} />
