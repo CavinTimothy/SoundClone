@@ -1,5 +1,5 @@
-a,
-a:visited {
+.homeSong,
+.homeSong:visited {
   text-decoration: none;
   color: rgb(90, 90, 90);
 }
@@ -30,8 +30,6 @@ a:visited {
 
 .homeItem {
   width: 205px;
-  /* margin: 2px;
-  padding: 1px; */
 }
 
 .img {
